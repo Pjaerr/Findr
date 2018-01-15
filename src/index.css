@@ -1,0 +1,14 @@
+body {
+  font: 14px 'Roboto', Futura, sans-serif;
+  margin: 20px;
+}
+
+.title {
+  text-align: center;
+}
+
+#dislike-btn,
+#like-btn {
+  display: flex;
+  justify-content: center;
+}
