@@ -7,8 +7,6 @@ body {
   text-align: center;
 }
 
-#dislike-btn,
-#like-btn {
-  display: flex;
-  justify-content: center;
+#place-card {
+  margin-bottom: 3.5%;
 }

@@ -1,0 +1,9 @@
+#place-card-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    max-width: 480px;
+    max-height: 570px;
+}

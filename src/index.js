@@ -1,7 +1,15 @@
+//Import React
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+//Import the Material UI Theme Provider (holds all elements using material ui)
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import RaisedButton from 'material-ui/RaisedButton';
+
+//Import External Components
+import ActionButtons from './external_components/actionButtons.js';
+import PlaceCard from './external_components/placeCard.js';
+
+
 import './index.css';
 
 class Main extends React.Component
@@ -20,8 +28,12 @@ class Main extends React.Component
 
                 <div>
                     <MuiThemeProvider>
-                        <div id="dislike-btn"><RaisedButton label="X" primary={true} /></div>
-                        <div id="like-btn"><RaisedButton label="<3" primary={true} /></div>
+                        <div id="place-card">
+                            <PlaceCard />
+                        </div>
+                        <div id="action-buttons">
+                            <ActionButtons />
+                        </div>
                     </MuiThemeProvider>
                 </div>
             </div>
