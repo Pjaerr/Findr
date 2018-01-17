@@ -8,6 +8,8 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import HeartIcon from 'material-ui/svg-icons/action/favorite';
 import CancelIcon from 'material-ui/svg-icons/content/clear'
 
+//Import relevant event handlers.
+import { event_like, event_dislike } from './eventHandlers.js';
 
 //Import CSS
 import './css/actionButtons.css';
@@ -24,12 +26,12 @@ class ActionButtons extends React.Component
 {
     onLike()
     {
-        //Happens when the like button is clicked.
+        event_like();
     }
 
     onDislike()
     {
-        //Happens when the dislike button is clicked.
+        event_dislike();
     }
 
     render()
