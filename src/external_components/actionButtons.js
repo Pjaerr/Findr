@@ -39,7 +39,7 @@ class ActionButtons extends React.Component
         return (
             <div id="action-buttons-wrapper">
                 <div id="dislike-btn-div">
-                    <FloatingActionButton className="dislike-btn" primary={true} onClick={this.onDislike}>
+                    <FloatingActionButton className="dislike-btn" onClick={this.onDislike}>
                         <CancelIcon />
                     </FloatingActionButton>
                 </div>

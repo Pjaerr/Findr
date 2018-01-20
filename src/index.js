@@ -6,37 +6,25 @@ import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 //Import External Components
-import ActionButtons from './external_components/actionButtons.js';
 import PlaceCard from './external_components/placeCard.js';
-
 
 import './index.css';
 
 class Main extends React.Component
 {
-    constructor(props)
-    {
-        super(props);
-        this.state = { clicks: 0 };
-    }
-
     render()
     {
         return (
             <div>
                 <div><h1 className="title">Findr</h1></div>
-
                 <div>
                     <MuiThemeProvider>
                         <div id="place-card">
                             <PlaceCard />
                         </div>
-                        <div id="action-buttons">
-                            <ActionButtons />
-                        </div>
                     </MuiThemeProvider>
                 </div>
-            </div>
+            </div >
         );
     }
 }

@@ -8,6 +8,12 @@ import { Card, CardMedia, CardTitle, CardText } from 'material-ui/Card'
 import StarIcon from 'material-ui/svg-icons/toggle/star'
 import HalfStarIcon from 'material-ui/svg-icons/toggle/star-half'
 
+//Import buttons
+import ActionButtons from './actionButtons.js';
+
+//Import connection with Google Maps Place API.
+import Places from './google_maps/Places.js';
+
 //Import CSS
 import './css/placeCard.css';
 
@@ -20,6 +26,8 @@ class PlaceCard extends React.Component
         this.state =
             {
                 /**The current card, this should be updated via setState() when a new card is loaded.*/
+                searchRadius: 2,
+                nearbyPlaces: [],
                 currentCard:
                     {
                         locationName: "River Soar",
@@ -42,7 +50,7 @@ class PlaceCard extends React.Component
         fullStars = (this.state.currentCard.rating - (this.state.currentCard.rating % 1));
 
         /*If the number contained a decimal, use 1 half star.*/
-        this.state.currentCard.rating % 1 != 0 ? halfStars = 1 : halfStars = 0;
+        this.state.currentCard.rating % 1 >= 0.5 ? halfStars = 1 : halfStars = 0;
 
         return (
             /**Fill an array with the number of stars (both full and half stars) and then
@@ -52,17 +60,22 @@ class PlaceCard extends React.Component
             <div id="star-rating">
                 <span>
                     {
-                        Array(fullStars).fill().map((_, i) => <StarIcon />)
+                        Array(fullStars).fill().map((_, i) => <StarIcon key={i} />)
                     }
                 </span>
                 <span>
                     {
-                        Array(halfStars).fill().map((_, i) => <HalfStarIcon />)
+                        Array(halfStars).fill().map((_, i) => <HalfStarIcon key={i} />)
                     }
                 </span>
             </div>
         );
 
+    }
+
+    getNearbyPlaces = (nearbyPlaces) =>
+    {
+        this.setState({ nearbyPlaces: nearbyPlaces });
     }
 
     render()
@@ -75,16 +88,22 @@ class PlaceCard extends React.Component
              * as a JS object. Each value is then grabbed out of that object and stored inside of the props for the
              * card elements. This means that when the state is updated, the card will also automatically update.
             */
-            <div id="place-card-wrapper">
-                <Card className="card">
-                    <CardMedia>
-                        <img id="card-image" src={this.state.currentCard.imageSrc} alt={this.state.currentCard.locationName} />
-                    </CardMedia>
-                    <CardTitle title={this.state.currentCard.locationName} subtitle={"(" + this.state.currentCard.distanceInMiles + " Miles)"} />
-                    <CardText>
-                        {this.renderStarRating()}
-                    </CardText>
-                </Card>
+            <div>
+                <Places searchRadius={this.state.searchRadius} callback={this.getNearbyPlaces} />
+                <div id="place-card-wrapper">
+                    <Card className="card">
+                        <CardMedia>
+                            <img id="card-image" src={this.state.currentCard.imageSrc} alt={this.state.currentCard.locationName} />
+                        </CardMedia>
+                        <CardTitle title={this.state.currentCard.locationName} subtitle={"(" + this.state.currentCard.distanceInMiles + " Miles)"} />
+                        <CardText>
+                            {this.renderStarRating()}
+                        </CardText>
+                    </Card>
+                </div>
+                <div id="action-buttons">
+                    <ActionButtons />
+                </div>
             </div>
         );
     }
