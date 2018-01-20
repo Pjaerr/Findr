@@ -15,7 +15,7 @@ class Places extends React.Component
 
     componentDidMount()
     {
-        loadScript("https://maps.googleapis.com/maps/api/js?v=3.exp&key=API_KEY&libraries=places", () =>
+        loadScript("https://maps.googleapis.com/maps/api/js?v=3.exp&key=&libraries=places", () =>
         {
             this.google = window.google;
 
