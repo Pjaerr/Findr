@@ -2,25 +2,18 @@
 import anim_cardSwipe from './animations.js';
 
 
-
-/**In here we would probably import the google maps api component, or some component that interfaces
- * with it. From there, when a card is liked, the renderNewCard function will be called triggering
- * the interface with the aforementioned component.
-*/
-
-
-function event_like()
+function event_like(event)
 {
     /*Code here for when a place is liked.*/
-
+    event();
 
     anim_cardSwipe(); //Trigger the card swiping animation.
 }
 
-function event_dislike()
+function event_dislike(event)
 {
     /*Code here for when a place is disliked.*/
-
+    event();
     anim_cardSwipe(); //Trigger the card swiping animation.
 }
 

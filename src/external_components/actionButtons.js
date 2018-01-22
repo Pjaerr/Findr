@@ -24,14 +24,27 @@ be handled elsewhere when imported as an <ActionButtons /> element.
 
 class ActionButtons extends React.Component
 {
-    onLike()
+    constructor(props)
     {
-        event_like();
+        super(props);
     }
 
-    onDislike()
+    /*If the initial load has been completed (ie. don't let buttons carry out actions when
+    the data from google maps api hasn't be recieved yet.) */
+    onLike = () =>
     {
-        event_dislike();
+        if (this.props.initialLoadComplete)
+        {
+            event_like(this.props.event);
+        }
+    }
+
+    onDislike = () =>
+    {
+        if (this.props.initialLoadComplete)
+        {
+            event_dislike(this.props.event);
+        }
     }
 
     render()

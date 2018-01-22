@@ -25,17 +25,28 @@ class PlaceCard extends React.Component
 
         this.state =
             {
-                /**The current card, this should be updated via setState() when a new card is loaded.*/
-                searchRadius: 2,
+                //Whether or not the first card using data from Places.js has been loaded.
+                initialLoadComplete: false,
+
+                //The radius in miles to search for nearby places.
+                searchRadius: 1,
+
+                locationType: 'night_club',
+
+                //List of JS objects gathered via the Google Maps API in Places.js holding location info.
                 nearbyPlaces: [],
-                currentCard:
-                    {
-                        locationName: "River Soar",
-                        imageSrc: "https://i.imgur.com/Rwf148t.jpg",
-                        distanceInMiles: "1.2",
-                        rating: 4.4
-                    }
+
+                /**The current card, this should be updated via setState() when a new card is loaded.*/
+                locationName: "River Soar",
+                imageSrc: "https://i.imgur.com/Rwf148t.jpg",
+                distanceInMiles: "1.2",
+                rating: 4.4,
+
+                //The current position within nearbyPlaces[] from which to load data/
+                index: 0
             };
+
+        this.placeService; //Reference to the PlaceServiceAPI object created in Place.js
     }
 
     renderStarRating()
@@ -47,10 +58,10 @@ class PlaceCard extends React.Component
         minus the decimal amount gained as a remainder when dividing the number
         by 1. ie: 4.4 % 1 would give 0.4, 4.4 - 0.4 = 4. If the number is not
         a decimal number, the modulus would give 0 and thus nothing changes.*/
-        fullStars = (this.state.currentCard.rating - (this.state.currentCard.rating % 1));
+        fullStars = (this.state.rating - (this.state.rating % 1));
 
         /*If the number contained a decimal, use 1 half star.*/
-        this.state.currentCard.rating % 1 >= 0.5 ? halfStars = 1 : halfStars = 0;
+        this.state.rating % 1 >= 0.5 ? halfStars = 1 : halfStars = 0;
 
         return (
             /**Fill an array with the number of stars (both full and half stars) and then
@@ -73,13 +84,73 @@ class PlaceCard extends React.Component
 
     }
 
-    /**THIS FUNCTION IS ASYNC AND SO NEARBY PLACES IN THIS.STATE COULD BE OUT OF DATE, 
-     * OR EMPTY WHILST OTHER FUNCTIONS TRY AND USE IT (IE. CLICKING LIKE OR DISLIKE BEFORE NEARBY PLACES HAVE BEEN
-     * GRABBED AND STORED BY THE PLACES API). COULD CONSIDER UTILISING THE COMPONENTDID FUNCTIONS FROM REACT.
-     */
-    getNearbyPlaces = (nearbyPlaces) =>
+    /**Called via a prop to Place.js, passing in the PlaceServiceAPI object. */
+    getPlaceServiceReference = (service) =>
     {
-        this.setState({ nearbyPlaces: nearbyPlaces });
+        this.placeService = service;
+    }
+
+
+    /**Gets called as a callback function within Places.js when it has fully loaded nearby places via
+     * the Google Maps Places API. Will store the nearby places using setState and so is async.*/
+    pushToNearbyPlaces = (element) =>
+    {
+        let newNearbyPlaces = this.state.nearbyPlaces.slice();
+        newNearbyPlaces.push(element);
+        this.setState({ nearbyPlaces: newNearbyPlaces });
+    }
+
+    /**updateCard moves through the state.nearbyPlaces array everytime it is called and pushes the data related
+     * to that place to the card. It grabs the image associated to the place_id of the current place and pushes
+     * that to the card.*/
+    updateCard = () =>
+    {
+        /*Move the index along, if the next index is out of bounds, set it to 0.*/
+        let newIndex = this.state.index + 1;
+
+        //bug:THIS MAKES THE FIRST CARD APPEAR AGAIN WHEN PRESSING SKIP BUTTON.
+        if (newIndex >= this.state.nearbyPlaces.length)
+        {
+            newIndex = 0;
+        }
+
+        /**Get the image associated with the current nearbyPlace and store it inside of photo, if it
+         * doesn't exist, set photo to placeholder image.*/
+        this.placeService.getDetails({ placeId: this.state.nearbyPlaces[this.state.index].place_id }, (place, status) =>
+        {
+            if (status === window.google.maps.places.PlacesServiceStatus.OK)
+            {
+                let photo;
+
+                if (place.photos != null)
+                {
+                    photo = place.photos[0].getUrl({ maxWidth: 1080, maxHeight: 570 });
+                }
+                else
+                {
+                    photo = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/No_image_available_600_x_450.svg/600px-No_image_available_600_x_450.svg.png";
+                }
+
+                /*Set the state of the current card to match all of the current nearbyPlace data*/
+                this.setState({
+                    locationName: this.state.nearbyPlaces[this.state.index].name,
+                    imageSrc: photo,
+                    distanceInMiles: "1.2",
+                    rating: this.state.nearbyPlaces[this.state.index].rating,
+                    index: newIndex
+                });
+            }
+        });
+    }
+
+    componentDidUpdate()
+    {
+        /**If nearby places have been loaded, and this is the first time.*/
+        if (this.state.nearbyPlaces.length > 0 && !this.state.initialLoadComplete)
+        {
+            this.updateCard();
+            this.setState({ initialLoadComplete: true });
+        }
     }
 
     render()
@@ -93,20 +164,23 @@ class PlaceCard extends React.Component
              * card elements. This means that when the state is updated, the card will also automatically update.
             */
             <div>
-                <Places searchRadius={this.state.searchRadius} callback={this.getNearbyPlaces} />
+                <Places searchRadius={this.state.searchRadius}
+                    locationType={this.state.locationType}
+                    pushToNearbyPlaces={this.pushToNearbyPlaces}
+                    setReferenceOf={this.getPlaceServiceReference} />
                 <div id="place-card-wrapper">
                     <Card className="card">
                         <CardMedia>
-                            <img id="card-image" src={this.state.currentCard.imageSrc} alt={this.state.currentCard.locationName} />
+                            <img id="card-image" src={this.state.imageSrc} alt={this.state.locationName} />
                         </CardMedia>
-                        <CardTitle title={this.state.currentCard.locationName} subtitle={"(" + this.state.currentCard.distanceInMiles + " Miles)"} />
+                        <CardTitle title={this.state.locationName} subtitle={"(" + this.state.distanceInMiles + " Miles)"} />
                         <CardText>
                             {this.renderStarRating()}
                         </CardText>
                     </Card>
                 </div>
                 <div id="action-buttons">
-                    <ActionButtons />
+                    <ActionButtons event={this.updateCard} initialLoadComplete={this.state.initialLoadComplete} />
                 </div>
             </div>
         );
