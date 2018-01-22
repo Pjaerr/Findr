@@ -29,7 +29,7 @@ class PlaceCard extends React.Component
                 initialLoadComplete: false,
 
                 //The radius in miles to search for nearby places.
-                searchRadius: 1,
+                searchRadius: 10,
 
                 locationType: 'night_club',
 
@@ -47,6 +47,7 @@ class PlaceCard extends React.Component
             };
 
         this.placeService; //Reference to the PlaceServiceAPI object created in Place.js
+        this.myLocation = { lat: 0, lng: 0 };
     }
 
     renderStarRating()
@@ -85,9 +86,10 @@ class PlaceCard extends React.Component
     }
 
     /**Called via a prop to Place.js, passing in the PlaceServiceAPI object. */
-    getPlaceServiceReference = (service) =>
+    getPlaceServiceReference = (service, myLocation) =>
     {
         this.placeService = service;
+        this.myLocation = myLocation;
     }
 
 
@@ -131,16 +133,44 @@ class PlaceCard extends React.Component
                     photo = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/No_image_available_600_x_450.svg/600px-No_image_available_600_x_450.svg.png";
                 }
 
+                /*Latitude and Longitude of the current nearby place*/
+                let placeLatLng = {
+                    lat: this.state.nearbyPlaces[this.state.index].geometry.location.lat(),
+                    lng: this.state.nearbyPlaces[this.state.index].geometry.location.lng()
+                }
+
                 /*Set the state of the current card to match all of the current nearbyPlace data*/
                 this.setState({
                     locationName: this.state.nearbyPlaces[this.state.index].name,
                     imageSrc: photo,
-                    distanceInMiles: "1.2",
+                    distanceInMiles: this.calculateDistance(this.myLocation, placeLatLng),
                     rating: this.state.nearbyPlaces[this.state.index].rating,
                     index: newIndex
                 });
             }
         });
+    }
+
+    /**Calcualtes the distance between two latitiude and longitudes contained within two
+     * object literals.*/
+    calculateDistance(p1, p2)
+    {
+        let rad = function (x)
+        {
+            return x * Math.PI / 180;
+        }
+
+        let R = 6378137; // Earth’s mean radius in meter
+        let dLat = rad(p2.lat - p1.lat);
+        let dLong = rad(p2.lng - p1.lng);
+
+        let a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(rad(p1.lat)) * Math.cos(rad(p2.lat)) *
+            Math.sin(dLong / 2) * Math.sin(dLong / 2);
+
+        let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        let d = R * c;
+        return (d * 0.00062137119223733).toFixed(1); // returns the distance in meter
     }
 
     componentDidUpdate()

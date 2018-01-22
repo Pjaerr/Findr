@@ -57,7 +57,7 @@ class Places extends React.Component
                 {
                     if (status === this.google.maps.places.PlacesServiceStatus.OK)
                     {
-                        this.props.setReferenceOf(service); //Send a reference of the google place service to PlaceCard.js
+                        this.props.setReferenceOf(service, this.pos); //Send a reference of the google place service to PlaceCard.js
 
                         for (let i = 0; i < results.length; i++)
                         {
