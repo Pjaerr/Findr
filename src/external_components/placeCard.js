@@ -52,37 +52,49 @@ class PlaceCard extends React.Component
 
     renderStarRating()
     {
-        let fullStars = 0;
-        let halfStars = 0;
+        if (this.state.rating > 0)
+        {
+            let fullStars = 0;
+            let halfStars = 0;
 
-        /*Set the number of full stars to be equal to the current rating
-        minus the decimal amount gained as a remainder when dividing the number
-        by 1. ie: 4.4 % 1 would give 0.4, 4.4 - 0.4 = 4. If the number is not
-        a decimal number, the modulus would give 0 and thus nothing changes.*/
-        fullStars = (this.state.rating - (this.state.rating % 1));
+            /*Set the number of full stars to be equal to the current rating
+            minus the decimal amount gained as a remainder when dividing the number
+            by 1. ie: 4.4 % 1 would give 0.4, 4.4 - 0.4 = 4. If the number is not
+            a decimal number, the modulus would give 0 and thus nothing changes.*/
+            fullStars = (this.state.rating - (this.state.rating % 1));
 
-        /*If the number contained a decimal, use 1 half star.*/
-        this.state.rating % 1 >= 0.5 ? halfStars = 1 : halfStars = 0;
+            /*If the number contained a decimal, use 1 half star.*/
+            this.state.rating % 1 >= 0.5 ? halfStars = 1 : halfStars = 0;
 
-        return (
-            /**Fill an array with the number of stars (both full and half stars) and then
-             * for each element in said array, return a <StarIcon/> or <HalfStarIcon/> to be rendered
-             * when this.renderStarRating() is called within the <CardText> element.
-             */
-            <div id="star-rating">
-                <span>
-                    {
-                        Array(fullStars).fill().map((_, i) => <StarIcon key={i} />)
-                    }
-                </span>
-                <span>
-                    {
-                        Array(halfStars).fill().map((_, i) => <HalfStarIcon key={i} />)
-                    }
-                </span>
-            </div>
-        );
-
+            return (
+                /**Fill an array with the number of stars (both full and half stars) and then
+                 * for each element in said array, return a <StarIcon/> or <HalfStarIcon/> to be rendered
+                 * when this.renderStarRating() is called within the <CardText> element.
+                 */
+                <div id="star-rating">
+                    <span>
+                        {
+                            Array(fullStars).fill().map((_, i) => <StarIcon key={i} />)
+                        }
+                    </span>
+                    <span>
+                        {
+                            Array(halfStars).fill().map((_, i) => <HalfStarIcon key={i} />)
+                        }
+                    </span>
+                </div>
+            );
+        }
+        else
+        {
+            return (
+                <div id="star-rating">
+                    <span>
+                        No rating.
+                    </span>
+                </div>
+            );
+        }
     }
 
     /**Called via a prop to Place.js, passing in the PlaceServiceAPI object. */
@@ -111,7 +123,7 @@ class PlaceCard extends React.Component
         let newIndex = this.state.index + 1;
 
         //bug:THIS MAKES THE FIRST CARD APPEAR AGAIN WHEN PRESSING SKIP BUTTON.
-        if (newIndex >= this.state.nearbyPlaces.length)
+        if (newIndex >= this.state.nearbyPlaces.length && this.state.initialLoadComplete)
         {
             newIndex = 0;
         }
@@ -170,7 +182,7 @@ class PlaceCard extends React.Component
 
         let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         let d = R * c;
-        return (d * 0.00062137119223733).toFixed(1); // returns the distance in meter
+        return (d * 0.00062137119223733).toFixed(1); // returns the distance in miles to 2 decimal places.
     }
 
     componentDidUpdate()
@@ -208,11 +220,13 @@ class PlaceCard extends React.Component
                             {this.renderStarRating()}
                         </CardText>
                     </Card>
+
                 </div>
                 <div id="action-buttons">
                     <ActionButtons event={this.updateCard} initialLoadComplete={this.state.initialLoadComplete} />
                 </div>
             </div>
+
         );
     }
 }

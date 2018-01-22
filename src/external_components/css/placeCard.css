@@ -6,5 +6,16 @@
 
 .card {
     max-width: 480px;
-    max-height: 570px;
+    max-height: 480px;
+}
+
+#card-image {
+    max-width: 480px;
+    max-height: 320px;
+}
+
+#action-buttons {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
 }
