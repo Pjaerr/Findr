@@ -43,10 +43,12 @@ class PlaceCard extends React.Component
                 rating: 4.4,
 
                 //The current position within nearbyPlaces[] from which to load data/
-                index: 0
+                index: 0,
+
+                animClass: "card-no-anim",
             };
 
-        this.placeService; //Reference to the PlaceServiceAPI object created in Place.js
+        this.placeService = undefined; //Reference to the PlaceServiceAPI object created in Place.js
         this.myLocation = { lat: 0, lng: 0 };
     }
 
@@ -63,7 +65,8 @@ class PlaceCard extends React.Component
             a decimal number, the modulus would give 0 and thus nothing changes.*/
             fullStars = (this.state.rating - (this.state.rating % 1));
 
-            /*If the number contained a decimal, use 1 half star.*/
+            /*If the number contained a decimal, use 1 half star but only if the amount
+            is more than or equal to .5*/
             this.state.rating % 1 >= 0.5 ? halfStars = 1 : halfStars = 0;
 
             return (
@@ -97,7 +100,8 @@ class PlaceCard extends React.Component
         }
     }
 
-    /**Called via a prop to Place.js, passing in the PlaceServiceAPI object. */
+    /**Called via a prop to Place.js, passing in the PlaceServiceAPI object and the user's current
+     * geolocation. Avoids re-grabbing the data in placeCard.js.*/
     getPlaceServiceReference = (service, myLocation) =>
     {
         this.placeService = service;
@@ -106,7 +110,9 @@ class PlaceCard extends React.Component
 
 
     /**Gets called as a callback function within Places.js when it has fully loaded nearby places via
-     * the Google Maps Places API. Will store the nearby places using setState and so is async.*/
+     * the Google Maps Places API. Will store the nearby places using setState and so is async. It gets called
+     * for every new nearby place, reduces the intial load slightly as it pushes the first place generated instead
+     * of waiting to generate all of them.*/
     pushToNearbyPlaces = (element) =>
     {
         let newNearbyPlaces = this.state.nearbyPlaces.slice();
@@ -122,7 +128,6 @@ class PlaceCard extends React.Component
         /*Move the index along, if the next index is out of bounds, set it to 0.*/
         let newIndex = this.state.index + 1;
 
-        //bug:THIS MAKES THE FIRST CARD APPEAR AGAIN WHEN PRESSING SKIP BUTTON.
         if (newIndex >= this.state.nearbyPlaces.length && this.state.initialLoadComplete)
         {
             newIndex = 0;
@@ -190,44 +195,83 @@ class PlaceCard extends React.Component
         /**If nearby places have been loaded, and this is the first time.*/
         if (this.state.nearbyPlaces.length > 0 && !this.state.initialLoadComplete)
         {
-            this.updateCard();
+            this.updateCard(); //Update the card for the first time.
             this.setState({ initialLoadComplete: true });
         }
     }
 
+
+    swipeLeft = () =>
+    {
+        //Start the swipe left animation via css.
+        this.setState({ animClass: "card-swipe-left" });
+
+        //After the animation length as a passed, set the animation state back.
+        setTimeout(() => { this.setState({ animClass: "card-no-anim" }) }, 1000);
+
+    }
+    swipeRight = () =>
+    {
+        //Start the swipe right animation via css.
+        this.setState({ animClass: "card-swipe-right" });
+
+        //After the animation length as a passed, set the animation state back.
+        setTimeout(() => { this.setState({ animClass: "card-no-anim" }) }, 1000);
+    }
+
     render()
     {
-        return (
-            /**The card is constructed here, consisting of an image, a header below the image and a subheader
-             * below the header. It then has a <span> containing the number of stars the place has been rated.
-             * 
-             * The data it uses will be loaded via the google maps api and stored inside of this.state.currentCard
-             * as a JS object. Each value is then grabbed out of that object and stored inside of the props for the
-             * card elements. This means that when the state is updated, the card will also automatically update.
-            */
-            <div>
-                <Places searchRadius={this.state.searchRadius}
-                    locationType={this.state.locationType}
-                    pushToNearbyPlaces={this.pushToNearbyPlaces}
-                    setReferenceOf={this.getPlaceServiceReference} />
-                <div id="place-card-wrapper">
-                    <Card className="card">
-                        <CardMedia>
-                            <img id="card-image" src={this.state.imageSrc} alt={this.state.locationName} />
-                        </CardMedia>
-                        <CardTitle title={this.state.locationName} subtitle={"(" + this.state.distanceInMiles + " Miles)"} />
-                        <CardText>
-                            {this.renderStarRating()}
-                        </CardText>
-                    </Card>
-
+        if (!this.state.initialLoadComplete)
+        {
+            return (
+                <div>
+                    <div className="loading">
+                    </div>
+                    <Places searchRadius={this.state.searchRadius}
+                        locationType={this.state.locationType}
+                        pushToNearbyPlaces={this.pushToNearbyPlaces}
+                        setReferenceOf={this.getPlaceServiceReference} />
                 </div>
-                <div id="action-buttons">
-                    <ActionButtons event={this.updateCard} initialLoadComplete={this.state.initialLoadComplete} />
-                </div>
-            </div>
+            );
+        }
+        else
+        {
+            return (
+                /**The card is constructed here, consisting of an image, a header below the image and a subheader
+                 * below the header. It then has a <span> containing the number of stars the place has been rated.
+                 * 
+                 * The data it uses will be loaded via the google maps api and stored inside of this.state.currentCard
+                 * as a JS object. Each value is then grabbed out of that object and stored inside of the props for the
+                 * card elements. This means that when the state is updated, the card will also automatically update.
+                */
+                <div>
 
-        );
+                    <div id="place-card-wrapper">
+                        <Card className={this.state.animClass}>
+                            <CardMedia>
+                                <img id="card-image" src={this.state.imageSrc} alt={this.state.locationName} />
+                            </CardMedia>
+                            <CardTitle title={this.state.locationName} subtitle={"(" + this.state.distanceInMiles + " Miles)"} />
+                            <CardText>
+                                {this.renderStarRating()}
+                            </CardText>
+                        </Card>
+
+                    </div>
+                    <div id="action-buttons">
+                        <ActionButtons
+                            /*Gets called via the actionsButtons.js script once the relevant swipeRight/Left functions
+                            have been carried out.*/
+                            event={this.updateCard}
+                            initialLoadComplete={this.state.initialLoadComplete}
+
+                            /*Pass the functions to be called when the relevant buttons are clicked.*/
+                            swipeLeft={this.swipeLeft}
+                            swipeRight={this.swipeRight} />
+                    </div>
+                </div>
+            );
+        }
     }
 }
 

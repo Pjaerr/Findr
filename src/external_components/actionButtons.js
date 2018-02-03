@@ -24,18 +24,14 @@ be handled elsewhere when imported as an <ActionButtons /> element.
 
 class ActionButtons extends React.Component
 {
-    constructor(props)
-    {
-        super(props);
-    }
-
     /*If the initial load has been completed (ie. don't let buttons carry out actions when
     the data from google maps api hasn't be recieved yet.) */
     onLike = () =>
     {
         if (this.props.initialLoadComplete)
         {
-            event_like(this.props.event);
+            this.props.swipeRight();
+            setTimeout(() => { event_like(this.props.event) }, 700);
         }
     }
 
@@ -43,7 +39,8 @@ class ActionButtons extends React.Component
     {
         if (this.props.initialLoadComplete)
         {
-            event_dislike(this.props.event);
+            this.props.swipeLeft();
+            setTimeout(() => { event_dislike(this.props.event) }, 700);
         }
     }
 

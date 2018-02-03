@@ -13,6 +13,8 @@ class Places extends React.Component
             };
 
         this.nearbyPlaces = []; //Places to be stored here when api is ready.
+
+        this.browserHasGeolocation = true;
     }
 
     componentDidMount()
@@ -71,24 +73,50 @@ class Places extends React.Component
                 });
 
 
-            });
+            },
+                (error) => 
+                {
+                    if (error.code === error.PERMISSION_DENIED)
+                    {
+                        console.error("User has denied geolocation permission.");
+                    }
+                    else if (error.code === error.TIMEOUT)
+                    {
+                        console.error("The maximum time allowed for a getCurrentPosition() call has passed");
+                    }
+                    else if (error.code === error.POSITION_UNAVAILABLE)
+                    {
+                        console.error("Cannot find current position.");
+                    }
+
+                    this.noGeolocation();
+                });
         }
         else
         {
             //Browser doesn't support geolocation.
-            alert("Browser doesn't support geolocation");
+            this.noGeolocation();
         }
+    }
+
+    //Called when geolocation isn't available for whatever reason.
+    noGeolocation()
+    {
+        alert("Browser doesn't support geolocation");
+        this.browserHasGeolocation = false;
     }
 
     render()
     {
-        return (
-            <div ref="map">
-            </div>
-        );
+        if (this.browserHasGeolocation)
+        {
+            return (
+                <div ref="map">
+                </div>
+            );
+        }
     }
 }
-
 
 function loadScript(url, callback)
 {
