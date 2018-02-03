@@ -20,14 +20,13 @@ class Places extends React.Component
     componentDidMount()
     {
         /**Load the google maps api with places library, and when fully loaded, store the google object to this
-         * class and start the storing of nearby places.*/
+     * class and start the storing of nearby places.*/
         loadScript("https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIu5Sk_nbKUTybO5Eqg46o8NQTBUIgjec&libraries=places", () =>
         {
             this.google = window.google;
 
             this.storeNearbyPlaces();
         });
-
     }
 
     /**Get current position using the navigator and store it within a request object that also contains
@@ -49,9 +48,14 @@ class Places extends React.Component
                 let request =
                     {
                         location: this.pos,
-                        radius: (this.state.searchRadius / 0.00062137119223733), //Miles > Metres
-                        type: this.state.type
+                        radius: (this.props.searchRadius / 0.00062137119223733), //Miles > Metres
+                        type: this.props.locationType
                     };
+
+
+                /** make the storage of google variables global and then the functions that interface with them
+                 * be local and be callable from other components
+                 */
 
                 let service = new this.google.maps.places.PlacesService(this.map);
 
@@ -68,11 +72,11 @@ class Places extends React.Component
                     }
                     else
                     {
-                        console.log("Cannot find nearby places.");
+                        alert("Cannot find any places nearby that match that criteria. Try changing your search radius or location type.");
+                        window.location.reload();
                     }
+
                 });
-
-
             },
                 (error) => 
                 {
@@ -108,6 +112,7 @@ class Places extends React.Component
 
     render()
     {
+
         if (this.browserHasGeolocation)
         {
             return (

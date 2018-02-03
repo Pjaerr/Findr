@@ -9,7 +9,10 @@ import StarIcon from 'material-ui/svg-icons/toggle/star'
 import HalfStarIcon from 'material-ui/svg-icons/toggle/star-half'
 
 //Import buttons
-import ActionButtons from './actionButtons.js';
+import ActionButtons from './actionButtons.js'
+
+//Import User Options
+import Options from './options.js'
 
 //Import connection with Google Maps Place API.
 import Places from './google_maps/Places.js';
@@ -219,6 +222,14 @@ class PlaceCard extends React.Component
         setTimeout(() => { this.setState({ animClass: "card-no-anim" }) }, 1000);
     }
 
+
+    updateOptions = (locationType, searchRadius) =>
+    {
+        this.setState({ index: 0, nearbyPlaces: [], locationType: locationType, searchRadius: searchRadius, initialLoadComplete: false });
+
+        console.log(locationType, searchRadius);
+    }
+
     render()
     {
         if (!this.state.initialLoadComplete)
@@ -245,6 +256,9 @@ class PlaceCard extends React.Component
                  * card elements. This means that when the state is updated, the card will also automatically update.
                 */
                 <div>
+
+                    <Options optionsChanged={this.updateOptions}>
+                    </Options>
 
                     <div id="place-card-wrapper">
                         <Card className={this.state.animClass}>
