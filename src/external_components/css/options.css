@@ -1,0 +1,21 @@
+.options-container-shown {
+    display: flex;
+}
+
+.options-container-hidden {
+    display: none;
+}
+
+.options-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.options-btn {
+    margin-bottom: 5px;
+}
+
+.locationType {}
+
+.searchRadius {}

@@ -14,6 +14,7 @@ class Main extends React.Component
 {
     render()
     {
+        console.error("Roses are red, Violets are blue, unexpected '}' on line 32");
         return (
             <div>
                 <div><h1 className="title">Findr</h1></div>

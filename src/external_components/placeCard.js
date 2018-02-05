@@ -32,7 +32,7 @@ class PlaceCard extends React.Component
                 initialLoadComplete: false,
 
                 //The radius in miles to search for nearby places.
-                searchRadius: 10,
+                searchRadius: 3,
 
                 locationType: 'night_club',
 
@@ -40,11 +40,11 @@ class PlaceCard extends React.Component
                 nearbyPlaces: [],
 
                 /**The current card, this should be updated via setState() when a new card is loaded.*/
-                locationName: "River Soar",
+                locationName: "",
                 imageSrc: "",
                 googleMapsUrl: "",
-                distanceInMiles: "1.2",
-                rating: 4.4,
+                distanceInMiles: "",
+                rating: 0,
 
                 //The current position within nearbyPlaces[] from which to load data/
                 index: 0,
@@ -240,7 +240,7 @@ class PlaceCard extends React.Component
 
     updateOptions = (locationType, searchRadius) =>
     {
-        this.setState({ index: 0, nearbyPlaces: [], locationType: locationType, searchRadius: searchRadius, initialLoadComplete: false });
+        this.setState({ index: 0, nearbyPlaces: [], locationType: locationType, searchRadius: parseFloat(searchRadius), initialLoadComplete: false });
     }
 
     render()
@@ -272,8 +272,10 @@ class PlaceCard extends React.Component
                  * card elements. This means that when the state is updated, the card will also automatically update.
                 */
                 <div>
-
-                    <Options optionsChanged={this.updateOptions}>
+                    <Options
+                        optionsChanged={this.updateOptions}
+                        currentLocationType={this.state.locationType}
+                        currentSearchRadius={this.state.searchRadius.toString()}>
                     </Options>
 
                     <div id="place-card-wrapper">
@@ -286,7 +288,6 @@ class PlaceCard extends React.Component
                                 {this.renderStarRating()}
                             </CardText>
                         </Card>
-
                     </div>
                     <div id="action-buttons">
                         <ActionButtons
@@ -299,6 +300,7 @@ class PlaceCard extends React.Component
                             swipeLeft={this.swipeLeft}
                             swipeRight={this.swipeRight} />
                     </div>
+
                 </div>
             );
         }
