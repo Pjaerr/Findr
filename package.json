@@ -1,6 +1,7 @@
 {
   "name": "findr",
   "version": "0.1.0",
+  "homepage": "https://pjaerr.github.io/Findr",
   "private": true,
   "dependencies": {
     "google-maps-react": "^1.1.2",
