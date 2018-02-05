@@ -54,6 +54,7 @@ class PlaceCard extends React.Component
 
         this.placeService = undefined; //Reference to the PlaceServiceAPI object created in Place.js
         this.myLocation = { lat: 0, lng: 0 };
+        this.hasLoadedPreviously = false;
     }
 
     renderStarRating()
@@ -253,7 +254,10 @@ class PlaceCard extends React.Component
                     <Places searchRadius={this.state.searchRadius}
                         locationType={this.state.locationType}
                         pushToNearbyPlaces={this.pushToNearbyPlaces}
-                        setReferenceOf={this.getPlaceServiceReference} />
+                        setReferenceOf={this.getPlaceServiceReference}
+                        hasLoadedPreviously={this.hasLoadedPreviously} />
+
+                    {this.hasLoadedPreviously = true}
                 </div>
             );
         }

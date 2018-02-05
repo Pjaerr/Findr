@@ -19,14 +19,22 @@ class Places extends React.Component
 
     componentDidMount()
     {
-        /**Load the google maps api with places library, and when fully loaded, store the google object to this
-     * class and start the storing of nearby places.*/
-        loadScript("https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIu5Sk_nbKUTybO5Eqg46o8NQTBUIgjec&libraries=places", () =>
+        if (!this.props.hasLoadedPreviously)
+        {
+            /**Load the google maps api with places library, and when fully loaded, store the google object to this
+    * class and start the storing of nearby places.*/
+            loadScript("https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIu5Sk_nbKUTybO5Eqg46o8NQTBUIgjec&libraries=places", () =>
+            {
+                this.google = window.google;
+
+                this.storeNearbyPlaces();
+            });
+        }
+        else
         {
             this.google = window.google;
-
             this.storeNearbyPlaces();
-        });
+        }
     }
 
     /**Get current position using the navigator and store it within a request object that also contains
