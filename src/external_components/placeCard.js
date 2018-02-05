@@ -41,7 +41,8 @@ class PlaceCard extends React.Component
 
                 /**The current card, this should be updated via setState() when a new card is loaded.*/
                 locationName: "River Soar",
-                imageSrc: "https://i.imgur.com/Rwf148t.jpg",
+                imageSrc: "",
+                googleMapsUrl: "",
                 distanceInMiles: "1.2",
                 rating: 4.4,
 
@@ -153,7 +154,9 @@ class PlaceCard extends React.Component
                     photo = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/No_image_available_600_x_450.svg/600px-No_image_available_600_x_450.svg.png";
                 }
 
-                /*Latitude and Longitude of the current nearby place*/
+                let googleMapsURL = place.url;
+
+                /*Latitude and Longitude of the current nearby place used in distance calculation*/
                 let placeLatLng = {
                     lat: this.state.nearbyPlaces[this.state.index].geometry.location.lat(),
                     lng: this.state.nearbyPlaces[this.state.index].geometry.location.lng()
@@ -163,6 +166,7 @@ class PlaceCard extends React.Component
                 this.setState({
                     locationName: this.state.nearbyPlaces[this.state.index].name,
                     imageSrc: photo,
+                    googleMapsUrl: googleMapsURL,
                     distanceInMiles: this.calculateDistance(this.myLocation, placeLatLng),
                     rating: this.state.nearbyPlaces[this.state.index].rating,
                     index: newIndex
@@ -213,6 +217,9 @@ class PlaceCard extends React.Component
         setTimeout(() => { this.setState({ animClass: "card-no-anim" }) }, 1000);
 
     }
+
+    /**Carries out the swiping right animation and then returns the current cards google
+     * maps url.*/
     swipeRight = () =>
     {
         //Start the swipe right animation via css.
@@ -220,14 +227,14 @@ class PlaceCard extends React.Component
 
         //After the animation length as a passed, set the animation state back.
         setTimeout(() => { this.setState({ animClass: "card-no-anim" }) }, 1000);
+
+        return this.state.googleMapsUrl;
     }
 
 
     updateOptions = (locationType, searchRadius) =>
     {
         this.setState({ index: 0, nearbyPlaces: [], locationType: locationType, searchRadius: searchRadius, initialLoadComplete: false });
-
-        console.log(locationType, searchRadius);
     }
 
     render()

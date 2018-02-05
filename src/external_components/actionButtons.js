@@ -30,8 +30,9 @@ class ActionButtons extends React.Component
     {
         if (this.props.initialLoadComplete)
         {
-            this.props.swipeRight();
-            setTimeout(() => { event_like(this.props.event) }, 700);
+            let url = this.props.swipeRight();
+
+            setTimeout(() => { event_like(url) }, 700);
         }
     }
 
