@@ -162,6 +162,11 @@ class PlaceCard extends React.Component
                     lng: this.state.nearbyPlaces[this.state.index].geometry.location.lng()
                 }
 
+                if (this.state.nearbyPlaces.length <= 1)
+                {
+                    newIndex = 0;
+                }
+
                 /*Set the state of the current card to match all of the current nearbyPlace data*/
                 this.setState({
                     locationName: this.state.nearbyPlaces[this.state.index].name,
