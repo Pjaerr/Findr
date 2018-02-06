@@ -32,7 +32,7 @@ class PlaceCard extends React.Component
                 initialLoadComplete: false,
 
                 //The radius in miles to search for nearby places.
-                searchRadius: 3,
+                searchRadius: 20,
 
                 locationType: 'night_club',
 
