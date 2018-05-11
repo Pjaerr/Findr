@@ -16,3 +16,10 @@ The app is meant to be a fun way to find all of the things nearby by 'swiping' c
 - [ ] Cards aren't always the same size and have (in my tests) slight variation causing the buttons to move around when moving from one card to another.
 
 - [ ] Not an issue, but the card switching could be faster by pre-loading the data for 2 cards ahead of time instead of the single card.
+
+
+
+###### If you pull the repo, remember to run the following commands as I have ignored the node_modules folder.
+`npm install`
+and
+`npm install material-ui`
