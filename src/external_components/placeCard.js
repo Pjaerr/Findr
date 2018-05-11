@@ -31,8 +31,10 @@ class PlaceCard extends React.Component
                 //Whether or not the first card using data from Places.js has been loaded.
                 initialLoadComplete: false,
 
+                cannotFindAnyLocations: false,
+
                 //The radius in miles to search for nearby places.
-                searchRadius: 20,
+                searchRadius: 2,
 
                 locationType: 'night_club',
 
@@ -127,7 +129,7 @@ class PlaceCard extends React.Component
 
     /**updateCard moves through the state.nearbyPlaces array everytime it is called and pushes the data related
      * to that place to the card. It grabs the image associated to the place_id of the current place and pushes
-     * that to the card.*/
+     * that to the card.    TODO: Could load the data (name, img and rating) of the current and next card to help loading times.*/
     updateCard = () =>
     {
         /*Move the index along, if the next index is out of bounds, set it to 0.*/
@@ -148,6 +150,8 @@ class PlaceCard extends React.Component
 
                 if (place.photos != null)
                 {
+                    //IT IS POTENTIALLY HERE YOU WANT TO RESTRICT THE IMAGE HEIGHT. (maybe to 100% and then restrict the bounding box of teh card instead)
+                    //OBJECT-FIT EXISTS REMEMBER,
                     photo = place.photos[0].getUrl({ maxWidth: 1080, maxHeight: 570 });
                 }
                 else
@@ -190,7 +194,7 @@ class PlaceCard extends React.Component
             return x * Math.PI / 180;
         }
 
-        let R = 6378137; // Earth’s mean radius in meter
+        let R = 6378137; // Earth’s mean radius in meters
         let dLat = rad(p2.lat - p1.lat);
         let dLong = rad(p2.lng - p1.lng);
 
@@ -243,6 +247,20 @@ class PlaceCard extends React.Component
         this.setState({ index: 0, nearbyPlaces: [], locationType: locationType, searchRadius: parseFloat(searchRadius), initialLoadComplete: false });
     }
 
+    noLocationFound = () =>
+    {
+        if (this.state.searchRadius + 2 > 20)
+        {
+            alert("Cannot find any locations of type: '" + this.state.locationType + "' nearby. Try changing the location type!");
+            this.setState({ initialLoadComplete: true, cannotFindAnyLocations: true, searchRadius: 10 });
+        }
+        else
+        {
+            this.updateOptions(this.state.locationType, this.state.searchRadius + 2);
+        }
+
+    }
+
     render()
     {
         if (!this.state.initialLoadComplete)
@@ -255,7 +273,8 @@ class PlaceCard extends React.Component
                         locationType={this.state.locationType}
                         pushToNearbyPlaces={this.pushToNearbyPlaces}
                         setReferenceOf={this.getPlaceServiceReference}
-                        hasLoadedPreviously={this.hasLoadedPreviously} />
+                        hasLoadedPreviously={this.hasLoadedPreviously}
+                        noLocationFound={this.noLocationFound} />
 
                     {this.hasLoadedPreviously = true}
                 </div>
@@ -263,46 +282,65 @@ class PlaceCard extends React.Component
         }
         else
         {
-            return (
-                /**The card is constructed here, consisting of an image, a header below the image and a subheader
-                 * below the header. It then has a <span> containing the number of stars the place has been rated.
-                 * 
-                 * The data it uses will be loaded via the google maps api and stored inside of this.state.currentCard
-                 * as a JS object. Each value is then grabbed out of that object and stored inside of the props for the
-                 * card elements. This means that when the state is updated, the card will also automatically update.
-                */
-                <div>
-                    <Options
-                        optionsChanged={this.updateOptions}
-                        currentLocationType={this.state.locationType}
-                        currentSearchRadius={this.state.searchRadius.toString()}>
-                    </Options>
+            if (!this.state.cannotFindAnyLocations)
+            {
 
-                    <div id="place-card-wrapper">
-                        <Card className={this.state.animClass}>
-                            <CardMedia>
-                                <img id="card-image" src={this.state.imageSrc} alt={this.state.locationName} />
-                            </CardMedia>
-                            <CardTitle title={this.state.locationName} subtitle={"(" + this.state.distanceInMiles + " Miles)"} />
-                            <CardText>
-                                {this.renderStarRating()}
-                            </CardText>
-                        </Card>
+
+                return (
+                    /**The card is constructed here, consisting of an image, a header below the image and a subheader
+                     * below the header. It then has a <span> containing the number of stars the place has been rated.
+                     * 
+                     * The data it uses will be loaded via the google maps api and stored inside of this.state.currentCard
+                     * as a JS object. Each value is then grabbed out of that object and stored inside of the props for the
+                     * card elements. This means that when the state is updated, the card will also automatically update.
+                    */
+                    <div>
+                        <Options
+                            optionsChanged={this.updateOptions} //!< Reference to a function that can then be called on Options via this.props.optionsChanged()
+                            currentLocationType={this.state.locationType}
+                            currentSearchRadius={this.state.searchRadius.toString()}
+                            optionsDisplayState="options-container-hidden">
+                        </Options>
+
+                        <div id="place-card-wrapper">
+                            <Card className={this.state.animClass}>
+                                <CardMedia className="cardMedia">
+                                    <img id="card-image" src={this.state.imageSrc} alt={this.state.locationName} />
+                                </CardMedia>
+                                <CardTitle title={this.state.locationName} subtitle={"(" + this.state.distanceInMiles + " Miles)"} />
+                                <CardText>
+                                    {this.renderStarRating()}
+                                </CardText>
+                            </Card>
+                        </div>
+                        <div id="action-buttons">
+                            <ActionButtons
+                                /*Gets called via the actionsButtons.js script once the relevant swipeRight/Left functions
+                                have been carried out.*/
+                                event={this.updateCard}
+                                initialLoadComplete={this.state.initialLoadComplete}
+
+                                /*Pass the functions to be called when the relevant buttons are clicked.*/
+                                swipeLeft={this.swipeLeft}
+                                swipeRight={this.swipeRight} />
+                        </div>
+
                     </div>
-                    <div id="action-buttons">
-                        <ActionButtons
-                            /*Gets called via the actionsButtons.js script once the relevant swipeRight/Left functions
-                            have been carried out.*/
-                            event={this.updateCard}
-                            initialLoadComplete={this.state.initialLoadComplete}
-
-                            /*Pass the functions to be called when the relevant buttons are clicked.*/
-                            swipeLeft={this.swipeLeft}
-                            swipeRight={this.swipeRight} />
+                );
+            }
+            else
+            {
+                return (
+                    <div>
+                        <Options
+                            optionsChanged={this.updateOptions} //!< Reference to a function that can then be called on Options via this.props.optionsChanged()
+                            currentLocationType={this.state.locationType}
+                            currentSearchRadius={this.state.searchRadius.toString()}
+                            optionsDisplayState="options-container-shown">
+                        </Options>
                     </div>
-
-                </div>
-            );
+                );
+            }
         }
     }
 }

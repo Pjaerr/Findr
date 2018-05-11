@@ -17,16 +17,15 @@ class Places extends React.Component
         this.browserHasGeolocation = true;
     }
 
-    componentDidMount()
+    loadPlaces()
     {
         if (!this.props.hasLoadedPreviously)
         {
             /**Load the google maps api with places library, and when fully loaded, store the google object to this
-    * class and start the storing of nearby places.*/
+            * class and start the storing of nearby places.*/
             loadScript("https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIu5Sk_nbKUTybO5Eqg46o8NQTBUIgjec&libraries=places", () =>
             {
                 this.google = window.google;
-
                 this.storeNearbyPlaces();
             });
         }
@@ -36,6 +35,18 @@ class Places extends React.Component
             this.storeNearbyPlaces();
         }
     }
+
+    componentDidMount()
+    {
+        this.loadPlaces();
+    }
+
+    componentDidUpdate()
+    {
+        this.loadPlaces();
+    }
+
+
 
     /**Get current position using the navigator and store it within a request object that also contains
      * a radius and type of place to search for. Pass this object to the service.nearbySearch function
@@ -67,6 +78,7 @@ class Places extends React.Component
 
                 let service = new this.google.maps.places.PlacesService(this.map);
 
+
                 service.nearbySearch(request, (results, status) =>
                 {
                     if (status === this.google.maps.places.PlacesServiceStatus.OK)
@@ -80,11 +92,12 @@ class Places extends React.Component
                     }
                     else
                     {
-                        alert("Cannot find any places nearby that match that criteria. Try changing your search radius or location type.");
-                        window.location.reload();
+                        alert("Cannot find a location of type: '" + request.type + "' within " + this.props.searchRadius + " miles, search again with a larger search radius?");
+                        this.props.noLocationFound();
                     }
 
                 });
+
             },
                 (error) => 
                 {
@@ -120,7 +133,6 @@ class Places extends React.Component
 
     render()
     {
-
         if (this.browserHasGeolocation)
         {
             return (

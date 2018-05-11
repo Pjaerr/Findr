@@ -29,7 +29,7 @@ class Options extends React.Component
             {
                 currentLocationType: this.props.currentLocationType,
                 searchRadius: this.props.currentSearchRadius,
-                optionsDisplayState: "options-container-hidden"
+                optionsDisplayState: this.props.optionsDisplayState
             }
     }
 
@@ -62,7 +62,7 @@ class Options extends React.Component
     render()
     {
         return (
-            <div>
+            <div className="options">
                 <FloatingActionButton className="options-btn" mini={true} backgroundColor="#9E9E9E" onClick={this.toggleOptions}>
                     <SettingsIcon />
                 </FloatingActionButton>
