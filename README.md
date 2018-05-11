@@ -6,20 +6,10 @@ Findr is a web app made with **React**, **JavaScript** and the **Google Maps API
 The app is meant to be a fun way to find all of the things nearby by 'swiping' cards left or right like in the Tinder app, all of the data is easily found via google maps itself.
 
 
-##### Issues (that i'll fix if I can get around to it)
-- [x] ~~The options menu pushes the card off of the screen.~~
+#### Issues
+The app works as I intended, but it obviously has a few issues here and there, nothing breaks it, but things could be improved in places. I don't intend for it to be added to by other people, but if you really want to you can tackle some of the [issues](https://github.com/Pjaerr/Findr/issues) and make a pull request and ill gladly accept!
 
-- [ ] On iphone 4 and sometimes on iphone 5/SE screensizes, the like and dismiss buttons move partially, or fully, off of the bottom of the screen requiring the user to scroll.
-
-- [ ] The google maps api is sometimes loaded before the actual map component it needs has been rendered within the DOM causing an error to appear in the console. (As far as I know this doesn't break and/or slow anything down)
-
-- [ ] Cards aren't always the same size and have (in my tests) slight variation causing the buttons to move around when moving from one card to another.
-
-- [ ] Not an issue, but the card switching could be faster by pre-loading the data for 2 cards ahead of time instead of the single card.
+**If you pull the repo, remember to run `npm install` and `npm install material-ui` as I have ignored the node_modules folder in the .gitignore file.**
 
 
-
-###### If you pull the repo, remember to run the following commands as I have ignored the node_modules folder.
-`npm install`
-and
-`npm install material-ui`
+*Like an idiot, I also left my google maps api key in the project, pls look after it*
