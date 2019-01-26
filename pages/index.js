@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 //Import Styled Components and Global Styles
 import styled, { createGlobalStyle } from 'styled-components';
 import GlobalStyles from '../GlobalStyles';
 
 //Import Components
-import Card from '../src/components/Card/Card';
+import CardContainer from '../src/components/CardContainer/CardContainer';
+
+//Import test data
+import testData from '../test-data';
 
 const GloballyInjectedStyles = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css?family=Montserrat:400,400i,700');
@@ -23,21 +26,38 @@ const Page = styled.div`
     align-items: center;
 `;
 
-const index = () =>
-{
-    return (
-        <Page>
-            <GloballyInjectedStyles />
 
-            <h1>Findr</h1>
-            <Card data={{
-                name: "Big Ben",
-                distance: 4,
-                rating: 3.5,
-                image: "https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/MA_00514390_hsmjfe.jpg"
-            }} />
-        </Page>
-    );
+class index extends React.Component
+{
+    constructor(props)
+    {
+        super(props);
+
+        this.state = { pointsOfInterestData: [] };
+    }
+
+    componentDidMount()
+    {
+        this.getPointsOfInterest();
+    }
+
+    getPointsOfInterest = () =>
+    {
+        //In here we would be making a fetch request to our api and setting the data in local state
+        this.setState({ pointsOfInterestData: testData });
+    }
+
+    render()
+    {
+        return (
+            <Page>
+                <GloballyInjectedStyles />
+
+                <h1>Findr</h1>
+                <CardContainer data={this.state.pointsOfInterestData} />
+            </Page>
+        );
+    }
 };
 
 export default index;

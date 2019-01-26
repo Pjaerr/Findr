@@ -194,12 +194,12 @@ function index (resultFn, isEqual) {
 
 /***/ "./node_modules/object-assign/index.js":
 /*!***************************************************************************************************!*\
-  !*** delegated ./node_modules/object-assign/index.js from dll-reference dll_831a3634f66cb1dada0c ***!
+  !*** delegated ./node_modules/object-assign/index.js from dll-reference dll_bf7e0fac7fb917aafe82 ***!
   \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(/*! dll-reference dll_831a3634f66cb1dada0c */ "dll-reference dll_831a3634f66cb1dada0c"))("./node_modules/object-assign/index.js");
+module.exports = (__webpack_require__(/*! dll-reference dll_bf7e0fac7fb917aafe82 */ "dll-reference dll_bf7e0fac7fb917aafe82"))("./node_modules/object-assign/index.js");
 
 /***/ }),
 
@@ -400,12 +400,12 @@ process.umask = function() { return 0; };
 
 /***/ "./node_modules/prop-types/checkPropTypes.js":
 /*!*********************************************************************************************************!*\
-  !*** delegated ./node_modules/prop-types/checkPropTypes.js from dll-reference dll_831a3634f66cb1dada0c ***!
+  !*** delegated ./node_modules/prop-types/checkPropTypes.js from dll-reference dll_bf7e0fac7fb917aafe82 ***!
   \*********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(/*! dll-reference dll_831a3634f66cb1dada0c */ "dll-reference dll_831a3634f66cb1dada0c"))("./node_modules/prop-types/checkPropTypes.js");
+module.exports = (__webpack_require__(/*! dll-reference dll_bf7e0fac7fb917aafe82 */ "dll-reference dll_bf7e0fac7fb917aafe82"))("./node_modules/prop-types/checkPropTypes.js");
 
 /***/ }),
 
@@ -1013,23 +1013,23 @@ if (true) {
 
 /***/ "./node_modules/prop-types/lib/ReactPropTypesSecret.js":
 /*!*******************************************************************************************************************!*\
-  !*** delegated ./node_modules/prop-types/lib/ReactPropTypesSecret.js from dll-reference dll_831a3634f66cb1dada0c ***!
+  !*** delegated ./node_modules/prop-types/lib/ReactPropTypesSecret.js from dll-reference dll_bf7e0fac7fb917aafe82 ***!
   \*******************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(/*! dll-reference dll_831a3634f66cb1dada0c */ "dll-reference dll_831a3634f66cb1dada0c"))("./node_modules/prop-types/lib/ReactPropTypesSecret.js");
+module.exports = (__webpack_require__(/*! dll-reference dll_bf7e0fac7fb917aafe82 */ "dll-reference dll_bf7e0fac7fb917aafe82"))("./node_modules/prop-types/lib/ReactPropTypesSecret.js");
 
 /***/ }),
 
 /***/ "./node_modules/react-dom/index.js":
 /*!***********************************************************************************************!*\
-  !*** delegated ./node_modules/react-dom/index.js from dll-reference dll_831a3634f66cb1dada0c ***!
+  !*** delegated ./node_modules/react-dom/index.js from dll-reference dll_bf7e0fac7fb917aafe82 ***!
   \***********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(/*! dll-reference dll_831a3634f66cb1dada0c */ "dll-reference dll_831a3634f66cb1dada0c"))("./node_modules/react-dom/index.js");
+module.exports = (__webpack_require__(/*! dll-reference dll_bf7e0fac7fb917aafe82 */ "dll-reference dll_bf7e0fac7fb917aafe82"))("./node_modules/react-dom/index.js");
 
 /***/ }),
 
@@ -1291,12 +1291,12 @@ if (false) {} else {
 
 /***/ "./node_modules/react/index.js":
 /*!*******************************************************************************************!*\
-  !*** delegated ./node_modules/react/index.js from dll-reference dll_831a3634f66cb1dada0c ***!
+  !*** delegated ./node_modules/react/index.js from dll-reference dll_bf7e0fac7fb917aafe82 ***!
   \*******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(/*! dll-reference dll_831a3634f66cb1dada0c */ "dll-reference dll_831a3634f66cb1dada0c"))("./node_modules/react/index.js");
+module.exports = (__webpack_require__(/*! dll-reference dll_bf7e0fac7fb917aafe82 */ "dll-reference dll_bf7e0fac7fb917aafe82"))("./node_modules/react/index.js");
 
 /***/ }),
 
@@ -3961,8 +3961,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var _GlobalStyles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../GlobalStyles */ "./GlobalStyles.js");
-/* harmony import */ var _src_components_Card_Card__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../src/components/Card/Card */ "./src/components/Card/Card.js");
+/* harmony import */ var _src_components_CardContainer_CardContainer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../src/components/CardContainer/CardContainer */ "./src/components/CardContainer/CardContainer.js");
+/* harmony import */ var _test_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../test-data */ "./test-data.js");
 var _jsxFileName = "C:\\Users\\Pjaer\\Desktop\\Findr\\pages\\index.js";
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _templateObject2() {
   var data = _taggedTemplateLiteral(["\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n"]);
@@ -3991,44 +4012,78 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
  //Import Components
 
+ //Import test data
+
 
 var GloballyInjectedStyles = Object(styled_components__WEBPACK_IMPORTED_MODULE_1__["createGlobalStyle"])(_templateObject(), _GlobalStyles__WEBPACK_IMPORTED_MODULE_2__["default"].fontFamily, _GlobalStyles__WEBPACK_IMPORTED_MODULE_2__["default"].backgroundColour);
 var Page = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject2());
 
-var index = function index() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Page, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 29
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(GloballyInjectedStyles, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 30
-    },
-    __self: this
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 32
-    },
-    __self: this
-  }, "Findr"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_src_components_Card_Card__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    data: {
-      name: "Big Ben",
-      distance: 4,
-      rating: 3.5,
-      image: "https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/MA_00514390_hsmjfe.jpg"
-    },
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 33
-    },
-    __self: this
-  }));
-};
+var index =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(index, _React$Component);
 
+  function index(props) {
+    var _this;
+
+    _classCallCheck(this, index);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(index).call(this, props));
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getPointsOfInterest", function () {
+      //In here we would be making a fetch request to our api and setting the data in local state
+      _this.setState({
+        pointsOfInterestData: _test_data__WEBPACK_IMPORTED_MODULE_4__["default"]
+      });
+    });
+
+    _this.state = {
+      pointsOfInterestData: []
+    };
+    return _this;
+  }
+
+  _createClass(index, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.getPointsOfInterest();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Page, {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 53
+        },
+        __self: this
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(GloballyInjectedStyles, {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 54
+        },
+        __self: this
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 56
+        },
+        __self: this
+      }, "Findr"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_src_components_CardContainer_CardContainer__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        data: this.state.pointsOfInterestData,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 57
+        },
+        __self: this
+      }));
+    }
+  }]);
+
+  return index;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+;
 /* harmony default export */ __webpack_exports__["default"] = (index);
     (function (Component, route) {
       if(!Component) return
@@ -4189,6 +4244,90 @@ var CardImage = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_t
 
 /***/ }),
 
+/***/ "./src/components/CardContainer/CardContainer.js":
+/*!*******************************************************!*\
+  !*** ./src/components/CardContainer/CardContainer.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Card_Card__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Card/Card */ "./src/components/Card/Card.js");
+var _jsxFileName = "C:\\Users\\Pjaer\\Desktop\\Findr\\src\\components\\CardContainer\\CardContainer.js";
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+var CardContainer = function CardContainer(_ref) {
+  var data = _ref.data;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0),
+      _useState2 = _slicedToArray(_useState, 2),
+      currentCard = _useState2[0],
+      setCurrentCard = _useState2[1];
+
+  var cards = [];
+  data.forEach(function (set) {
+    cards.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Card_Card__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      data: set,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 13
+      },
+      __self: this
+    }));
+  });
+
+  var nextCard = function nextCard() {
+    if (currentCard < cards.length - 1) {
+      setCurrentCard(currentCard + 1);
+    } else {
+      setCurrentCard(0);
+    }
+  };
+
+  if (cards.length > 0) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 31
+      },
+      __self: this
+    }, cards[currentCard], react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      onClick: nextCard,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 33
+      },
+      __self: this
+    }, "Next"));
+  }
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    role: "img",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 38
+    },
+    __self: this
+  }, "\u2639\uFE0F No data found");
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (CardContainer);
+
+/***/ }),
+
 /***/ "./src/components/Rating/Rating.js":
 /*!*****************************************!*\
   !*** ./src/components/Rating/Rating.js ***!
@@ -4292,6 +4431,39 @@ var RatingContainer = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].
 
 /***/ }),
 
+/***/ "./test-data.js":
+/*!**********************!*\
+  !*** ./test-data.js ***!
+  \**********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ([{
+  name: "Big Ben",
+  distance: 4,
+  rating: 4,
+  image: "https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/MA_00514390_hsmjfe.jpg"
+}, {
+  name: "Eiffel Tower",
+  distance: 243,
+  rating: 4,
+  image: "https://www.toureiffel.paris/themes/custom/tour_eiffel/img/picto_myGoogleBusiness_1.jpg"
+}, {
+  name: "Petronas Twin Towers",
+  distance: 16000,
+  rating: 2.3,
+  image: "https://2.bp.blogspot.com/-r-UjhIS_PnE/Wa-jeZ4pYyI/AAAAAAAAd_g/2Vm4ETMGfGsjU-hKsCISkAFQ_rCGNYJQACLcBGAs/s1600/kuala%2Blumpur%2Btour-103-2.jpg"
+}, {
+  name: "Moscow Kremlin",
+  distance: 9085,
+  rating: 5,
+  image: "https://www.dookinternational.com/blog/wp-content/uploads/2016/11/Moscow-Kremlin-2.jpg"
+}]);
+
+/***/ }),
+
 /***/ 3:
 /*!******************************!*\
   !*** multi ./pages/index.js ***!
@@ -4306,14 +4478,14 @@ return { page: module.exports.default }});
 
 /***/ }),
 
-/***/ "dll-reference dll_831a3634f66cb1dada0c":
+/***/ "dll-reference dll_bf7e0fac7fb917aafe82":
 /*!*******************************************!*\
-  !*** external "dll_831a3634f66cb1dada0c" ***!
+  !*** external "dll_bf7e0fac7fb917aafe82" ***!
   \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = dll_831a3634f66cb1dada0c;
+module.exports = dll_bf7e0fac7fb917aafe82;
 
 /***/ })
 
