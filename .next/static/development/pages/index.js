@@ -8863,25 +8863,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _test_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../test-data */ "./test-data.js");
 var _jsxFileName = "C:\\Users\\Pjaer\\Desktop\\Findr\\pages\\index.js";
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function _templateObject2() {
   var data = _taggedTemplateLiteral(["\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n"]);
@@ -8916,72 +8904,51 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 var GloballyInjectedStyles = Object(styled_components__WEBPACK_IMPORTED_MODULE_1__["createGlobalStyle"])(_templateObject(), _GlobalStyles__WEBPACK_IMPORTED_MODULE_2__["default"].fontFamily, _GlobalStyles__WEBPACK_IMPORTED_MODULE_2__["default"].backgroundColour);
 var Page = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject2());
 
-var index =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(index, _React$Component);
+var index = function index() {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      pointsOfInterestData = _useState2[0],
+      setPointsOfInterestData = _useState2[1];
 
-  function index(props) {
-    var _this;
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    /* 
+        In here we would make our fetch request for the data, do any modifications and
+        get an output matching our predefined data strucure. We would then pass that data
+        into a setPointsOfInterestData() function call to re-render the component with the
+        fetched data. For now we have a static js file that returns an array so we pass it in
+        directly. We also want to specify that we only want to run this code if and when the data
+        changes, hence the [testData].
+    */
+    setPointsOfInterestData(_test_data__WEBPACK_IMPORTED_MODULE_4__["default"]);
+  }, [_test_data__WEBPACK_IMPORTED_MODULE_4__["default"]]);
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Page, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 50
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(GloballyInjectedStyles, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 51
+    },
+    __self: this
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 53
+    },
+    __self: this
+  }, "Findr"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_src_components_CardContainer_CardContainer__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    data: pointsOfInterestData,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 54
+    },
+    __self: this
+  }));
+};
 
-    _classCallCheck(this, index);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(index).call(this, props));
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getPointsOfInterest", function () {
-      //In here we would be making a fetch request to our api and setting the data in local state
-      _this.setState({
-        pointsOfInterestData: _test_data__WEBPACK_IMPORTED_MODULE_4__["default"]
-      });
-    });
-
-    _this.state = {
-      pointsOfInterestData: []
-    };
-    return _this;
-  }
-
-  _createClass(index, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.getPointsOfInterest();
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Page, {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 55
-        },
-        __self: this
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(GloballyInjectedStyles, {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 56
-        },
-        __self: this
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 58
-        },
-        __self: this
-      }, "Findr"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_src_components_CardContainer_CardContainer__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        data: this.state.pointsOfInterestData,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 59
-        },
-        __self: this
-      }));
-    }
-  }]);
-
-  return index;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
-
-;
 /* harmony default export */ __webpack_exports__["default"] = (index);
     (function (Component, route) {
       if(!Component) return
@@ -9121,7 +9088,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n    background: ", ";\n    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);\n\n    max-width: 500px;\n    max-height: 800px;\n\n    -webkit-touch-callout: none; /* iOS Safari */\n    -webkit-user-select: none; /* Safari */\n     -khtml-user-select: none; /* Konqueror HTML */\n       -moz-user-select: none; /* Firefox */\n        -ms-user-select: none; /* Internet Explorer/Edge */\n            user-select: none; /* Non-prefixed version, currently\n                                  supported by Chrome and Opera */\n\n    cursor: -webkit-grab;\n"]);
+  var data = _taggedTemplateLiteral(["\n    background: ", ";\n    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);\n\n    max-width: 500px;\n    max-height: 800px;\n\n    -webkit-touch-callout: none; /* iOS Safari */\n    -webkit-user-select: none; /* Safari */\n     -khtml-user-select: none; /* Konqueror HTML */\n       -moz-user-select: none; /* Firefox */\n        -ms-user-select: none; /* Internet Explorer/Edge */\n            user-select: none; /* Non-prefixed version, currently\n                                  supported by Chrome and Opera */\n\n    cursor: -webkit-grab;\n\n    &:active {\n        cursor: -webkit-grabbing;\n    }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -9224,7 +9191,7 @@ var CardContainer = function CardContainer(_ref) {
   };
 
   if (cards.length > 0) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CardContainerStyles__WEBPACK_IMPORTED_MODULE_3__["CardContainerWrapper"], {
       __source: {
         fileName: _jsxFileName,
         lineNumber: 55
@@ -9273,7 +9240,7 @@ var CardContainer = function CardContainer(_ref) {
     role: "img",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 74
+      lineNumber: 73
     },
     __self: this
   }, "\u2639\uFE0F No data found");
@@ -9287,13 +9254,24 @@ var CardContainer = function CardContainer(_ref) {
 /*!*************************************************************!*\
   !*** ./src/components/CardContainer/CardContainerStyles.js ***!
   \*************************************************************/
-/*! exports provided: CardContainerButtons */
+/*! exports provided: CardContainerButtons, CardContainerWrapper */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CardContainerButtons", function() { return CardContainerButtons; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CardContainerWrapper", function() { return CardContainerWrapper; });
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["\n    \n"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
 function _templateObject() {
   var data = _taggedTemplateLiteral(["\n    display: flex;\n    justify-content: space-between;\n\n    margin: 20px;\n"]);
 
@@ -9308,6 +9286,7 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 var CardContainerButtons = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject());
+var CardContainerWrapper = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject2());
 
 /***/ }),
 

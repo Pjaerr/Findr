@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 //Import Styled Components and Global Styles
 import styled, { createGlobalStyle } from 'styled-components';
@@ -29,37 +29,31 @@ const Page = styled.div`
 `;
 
 
-class index extends React.Component
+const index = () =>
 {
-    constructor(props)
+    const [pointsOfInterestData, setPointsOfInterestData] = useState([]);
+
+    useEffect(() =>
     {
-        super(props);
+        /* 
+            In here we would make our fetch request for the data, do any modifications and
+            get an output matching our predefined data strucure. We would then pass that data
+            into a setPointsOfInterestData() function call to re-render the component with the
+            fetched data. For now we have a static js file that returns an array so we pass it in
+            directly. We also want to specify that we only want to run this code if and when the data
+            changes, hence the [testData].
+        */
+        setPointsOfInterestData(testData);
+    }, [testData]);
 
-        this.state = { pointsOfInterestData: [] };
-    }
+    return (
+        <Page>
+            <GloballyInjectedStyles />
 
-    componentDidMount()
-    {
-        this.getPointsOfInterest();
-    }
-
-    getPointsOfInterest = () =>
-    {
-        //In here we would be making a fetch request to our api and setting the data in local state
-        this.setState({ pointsOfInterestData: testData });
-    }
-
-    render()
-    {
-        return (
-            <Page>
-                <GloballyInjectedStyles />
-
-                <h1>Findr</h1>
-                <CardContainer data={this.state.pointsOfInterestData} />
-            </Page>
-        );
-    }
+            <h1>Findr</h1>
+            <CardContainer data={pointsOfInterestData} />
+        </Page>
+    );
 };
 
 export default index;

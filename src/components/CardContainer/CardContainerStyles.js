@@ -6,3 +6,7 @@ export const CardContainerButtons = styled.div`
 
     margin: 20px;
 `;
+
+export const CardContainerWrapper = styled.div`
+    
+`;

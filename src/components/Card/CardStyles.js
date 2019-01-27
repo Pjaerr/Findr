@@ -17,6 +17,10 @@ export const CardContainer = styled.div`
                                   supported by Chrome and Opera */
 
     cursor: -webkit-grab;
+
+    &:active {
+        cursor: -webkit-grabbing;
+    }
 `;
 
 export const CardContent = styled.div`

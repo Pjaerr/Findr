@@ -4,7 +4,7 @@ import Swipeable from "react-swipy";
 
 import Card from '../Card/Card';
 
-import { CardContainerButtons } from './CardContainerStyles';
+import { CardContainerButtons, NextCard, CardContainerWrapper } from './CardContainerStyles';
 
 const CardContainer = ({ data }) =>
 {
@@ -52,7 +52,7 @@ const CardContainer = ({ data }) =>
     if (cards.length > 0)
     {
         return (
-            <div>
+            <CardContainerWrapper>
                 <Swipeable
                     limit={300}
                     buttons={({ left, right }) => (
@@ -66,8 +66,7 @@ const CardContainer = ({ data }) =>
                 >
                     {cards[currentCard]}
                 </Swipeable>
-                {/* {currentCard < cards.length - 2 && <div style={{ position: "relative", zIndex: "-1" }}> {cards[currentCard + 1]} </div>} */}
-            </div>
+            </CardContainerWrapper>
         );
     }
 
