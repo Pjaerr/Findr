@@ -8905,7 +8905,7 @@ var GloballyInjectedStyles = Object(styled_components__WEBPACK_IMPORTED_MODULE_1
 var Page = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject2());
 
 var index = function index() {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_test_data__WEBPACK_IMPORTED_MODULE_4__["default"]),
       _useState2 = _slicedToArray(_useState, 2),
       pointsOfInterestData = _useState2[0],
       setPointsOfInterestData = _useState2[1];
@@ -9068,7 +9068,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var _GlobalStyles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../GlobalStyles */ "./GlobalStyles.js");
 function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n    width: 500px;\n    height: 400px;\n    background-image: url('", "');\n    background-size: cover;\n    background-position: center center;\n"]);
+  var data = _taggedTemplateLiteral(["\n    width: 30rem;\n    height: 20rem;\n\n    @media (max-width: 992px)\n    {\n        width: 25rem;\n        height: 15rem;\n    }\n\n    @media (max-width: 768px)\n    {\n        width: 20rem;\n    }\n\n    background-image: url('", "');\n    background-size: cover;\n    background-position: center center;\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -9078,7 +9078,7 @@ function _templateObject3() {
 }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n    padding: 20px;\n\n    padding-bottom: 30px;\n"]);
+  var data = _taggedTemplateLiteral(["\n    padding-top: 10px;\n    padding-left: 20px;\n    padding-bottom: 20px;\n\n    @media (max-width: 540px)\n    {\n        h2 {\n            font-size: 1.2em;\n        }\n\n        h4 {\n            font-size: 1em;\n        }\n\n        img {\n            width: 18px;\n            height: 18px;\n        }\n    }\n"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -9088,7 +9088,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n    background: ", ";\n    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);\n\n    max-width: 500px;\n    max-height: 800px;\n\n    -webkit-touch-callout: none; /* iOS Safari */\n    -webkit-user-select: none; /* Safari */\n     -khtml-user-select: none; /* Konqueror HTML */\n       -moz-user-select: none; /* Firefox */\n        -ms-user-select: none; /* Internet Explorer/Edge */\n            user-select: none; /* Non-prefixed version, currently\n                                  supported by Chrome and Opera */\n\n    cursor: -webkit-grab;\n\n    &:active {\n        cursor: -webkit-grabbing;\n    }\n"]);
+  var data = _taggedTemplateLiteral(["\n    background: ", ";\n    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);\n\n    width: 30rem;\n    height: 30rem;\n\n    @media (max-width: 992px)\n    {\n        width: 25rem;\n        height: 25rem;\n    }\n\n    @media (max-width: 768px)\n    {\n        width: 20rem;\n    }\n\n    -webkit-touch-callout: none; /* iOS Safari */\n    -webkit-user-select: none; /* Safari */\n     -khtml-user-select: none; /* Konqueror HTML */\n       -moz-user-select: none; /* Firefox */\n        -ms-user-select: none; /* Internet Explorer/Edge */\n            user-select: none; /* Non-prefixed version, currently\n                                  supported by Chrome and Opera */\n\n    cursor: -webkit-grab;\n\n    &:active {\n        cursor: -webkit-grabbing;\n    }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -9215,14 +9215,28 @@ var CardContainer = function CardContainer(_ref) {
             lineNumber: 60
           },
           __self: this
-        }, "Reject"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: "/static/cross-icon.svg",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 60
+          },
+          __self: this
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           onClick: right,
           __source: {
             fileName: _jsxFileName,
             lineNumber: 61
           },
           __self: this
-        }, "Accept"));
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: "/static/heart-icon.svg",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 61
+          },
+          __self: this
+        })));
       },
       onSwipe: function onSwipe(dir) {
         direction = dir;
@@ -9262,6 +9276,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CardContainerButtons", function() { return CardContainerButtons; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CardContainerWrapper", function() { return CardContainerWrapper; });
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+/* harmony import */ var _GlobalStyles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../GlobalStyles */ "./GlobalStyles.js");
 function _templateObject2() {
   var data = _taggedTemplateLiteral(["\n    \n"]);
 
@@ -9273,7 +9288,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n    display: flex;\n    justify-content: space-between;\n\n    margin: 20px;\n"]);
+  var data = _taggedTemplateLiteral(["\n    display: flex;\n    justify-content: space-between;\n\n    margin-right: 3.5rem;\n    margin-left: 3.5rem;\n    margin-top: 0.6rem;\n\n    @media (min-width: 540px)\n    {\n        margin-top: 1rem;\n    }\n\n    button {\n        width: 3.2rem;\n        height: 3.2rem;\n        border-radius: 50%;\n\n        background: ", ";\n        box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);\n        border: none;\n\n        -webkit-appearance: button; /* for input */\n        -webkit-user-select: none; /* for button */\n       -moz-user-select: none;\n        -ms-user-select: none;\n\n        display: flex;\n        justify-content: center;\n    }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -9285,7 +9300,8 @@ function _templateObject() {
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
-var CardContainerButtons = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject());
+
+var CardContainerButtons = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject(), _GlobalStyles__WEBPACK_IMPORTED_MODULE_1__["default"].secondaryBackgroundColour);
 var CardContainerWrapper = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject2());
 
 /***/ }),

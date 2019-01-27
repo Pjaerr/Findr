@@ -57,8 +57,8 @@ const CardContainer = ({ data }) =>
                     limit={300}
                     buttons={({ left, right }) => (
                         <CardContainerButtons>
-                            <button onClick={left}>Reject</button>
-                            <button onClick={right}>Accept</button>
+                            <button onClick={left}><img src="/static/cross-icon.svg" /></button>
+                            <button onClick={right}><img src="/static/heart-icon.svg" /></button>
                         </CardContainerButtons>
                     )}
                     onSwipe={dir => { direction = dir }}

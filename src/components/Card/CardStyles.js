@@ -5,8 +5,19 @@ export const CardContainer = styled.div`
     background: ${GlobalStyles.secondaryBackgroundColour};
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
 
-    max-width: 500px;
-    max-height: 800px;
+    width: 30rem;
+    height: 30rem;
+
+    @media (max-width: 992px)
+    {
+        width: 25rem;
+        height: 25rem;
+    }
+
+    @media (max-width: 768px)
+    {
+        width: 20rem;
+    }
 
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -24,14 +35,42 @@ export const CardContainer = styled.div`
 `;
 
 export const CardContent = styled.div`
-    padding: 20px;
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-bottom: 20px;
 
-    padding-bottom: 30px;
+    @media (max-width: 540px)
+    {
+        h2 {
+            font-size: 1.2em;
+        }
+
+        h4 {
+            font-size: 1em;
+        }
+
+        img {
+            width: 18px;
+            height: 18px;
+        }
+    }
 `;
 
 export const CardImage = styled.div`
-    width: 500px;
-    height: 400px;
+    width: 30rem;
+    height: 20rem;
+
+    @media (max-width: 992px)
+    {
+        width: 25rem;
+        height: 15rem;
+    }
+
+    @media (max-width: 768px)
+    {
+        width: 20rem;
+    }
+
     background-image: url('${props => props.image}');
     background-size: cover;
     background-position: center center;

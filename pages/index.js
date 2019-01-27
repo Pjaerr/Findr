@@ -31,7 +31,7 @@ const Page = styled.div`
 
 const index = () =>
 {
-    const [pointsOfInterestData, setPointsOfInterestData] = useState([]);
+    const [pointsOfInterestData, setPointsOfInterestData] = useState(testData);
 
     useEffect(() =>
     {
