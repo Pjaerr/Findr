@@ -16,6 +16,8 @@ const GloballyInjectedStyles = createGlobalStyle`
     body {
         font-family: ${GlobalStyles.fontFamily};
         background-color: ${GlobalStyles.backgroundColour};
+
+        overflow: hidden;
     }
 `;
 

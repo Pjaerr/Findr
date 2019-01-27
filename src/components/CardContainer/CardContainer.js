@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
+import Swipeable from "react-swipy";
+
 import Card from '../Card/Card';
+
+import { CardContainerButtons } from './CardContainerStyles';
 
 const CardContainer = ({ data }) =>
 {
@@ -18,22 +22,30 @@ const CardContainer = ({ data }) =>
 
     }, [data]);
 
-    const dislikeCard = function ()
-    {
-        //Todo: Do animation with swing library here.
+    let direction = '';
 
+    const onAfterSwipe = () =>
+    {
+        if (direction === 'left')
+        {
+            dislikeCard();
+        }
+        else
+        {
+            likeCard();
+        }
+    }
+
+    const dislikeCard = () =>
+    {
         if (currentCard < cards.length - 1)
         {
             setCurrentCard((currentCard + 1));
         }
-
-        //Todo: Push card into history
     }
 
-    //Make data and card arrays more tightly coupled so not grabbing wrong data by accident.
-    const likeCard = function ()
+    const likeCard = () =>
     {
-        //Todo: Do animation with swing library here.        
         window.open(data[currentCard].externalLink, "_blank");
     }
 
@@ -41,9 +53,20 @@ const CardContainer = ({ data }) =>
     {
         return (
             <div>
-                {cards[currentCard]}
-                <button onClick={dislikeCard}>Dislike</button>
-                <button onClick={likeCard}>Like</button>
+                <Swipeable
+                    limit={300}
+                    buttons={({ left, right }) => (
+                        <CardContainerButtons>
+                            <button onClick={left}>Reject</button>
+                            <button onClick={right}>Accept</button>
+                        </CardContainerButtons>
+                    )}
+                    onSwipe={dir => { direction = dir }}
+                    onAfterSwipe={onAfterSwipe}
+                >
+                    {cards[currentCard]}
+                </Swipeable>
+                {/* {currentCard < cards.length - 2 && <div style={{ position: "relative", zIndex: "-1" }}> {cards[currentCard + 1]} </div>} */}
             </div>
         );
     }

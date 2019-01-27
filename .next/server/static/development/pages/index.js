@@ -169,7 +169,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n    @import url('https://fonts.googleapis.com/css?family=Montserrat:400,400i,700');\n\n    body {\n        font-family: ", ";\n        background-color: ", ";\n    }\n"]);
+  var data = _taggedTemplateLiteral(["\n    @import url('https://fonts.googleapis.com/css?family=Montserrat:400,400i,700');\n\n    body {\n        font-family: ", ";\n        background-color: ", ";\n\n        overflow: hidden;\n    }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -227,26 +227,26 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Page, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 53
+          lineNumber: 55
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(GloballyInjectedStyles, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 54
+          lineNumber: 56
         },
         __self: this
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 56
+          lineNumber: 58
         },
         __self: this
       }, "Findr"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_src_components_CardContainer_CardContainer__WEBPACK_IMPORTED_MODULE_3__["default"], {
         data: this.state.pointsOfInterestData,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 57
+          lineNumber: 59
         },
         __self: this
       }));
@@ -378,7 +378,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n    background: ", ";\n    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);\n\n    max-width: 500px;\n    max-height: 800px;\n"]);
+  var data = _taggedTemplateLiteral(["\n    background: ", ";\n    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);\n\n    max-width: 500px;\n    max-height: 800px;\n\n    -webkit-touch-callout: none; /* iOS Safari */\n    -webkit-user-select: none; /* Safari */\n     -khtml-user-select: none; /* Konqueror HTML */\n       -moz-user-select: none; /* Firefox */\n        -ms-user-select: none; /* Internet Explorer/Edge */\n            user-select: none; /* Non-prefixed version, currently\n                                  supported by Chrome and Opera */\n\n    cursor: -webkit-grab;\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -410,7 +410,10 @@ var CardImage = styled_components__WEBPACK_IMPORTED_MODULE_0___default.a.div(_te
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Card_Card__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Card/Card */ "./src/components/Card/Card.js");
+/* harmony import */ var react_swipy__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-swipy */ "react-swipy");
+/* harmony import */ var react_swipy__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_swipy__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Card_Card__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Card/Card */ "./src/components/Card/Card.js");
+/* harmony import */ var _CardContainerStyles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./CardContainerStyles */ "./src/components/CardContainer/CardContainerStyles.js");
 var _jsxFileName = "C:\\Users\\Pjaer\\Desktop\\Findr\\src\\components\\CardContainer\\CardContainer.js";
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
@@ -420,6 +423,8 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
@@ -445,28 +450,33 @@ var CardContainer = function CardContainer(_ref) {
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     setCards(data.map(function (set) {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Card_Card__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Card_Card__WEBPACK_IMPORTED_MODULE_2__["default"], {
         data: set,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 17
+          lineNumber: 21
         },
         __self: this
       });
     }));
   }, [data]);
+  var direction = '';
+
+  var onAfterSwipe = function onAfterSwipe() {
+    if (direction === 'left') {
+      dislikeCard();
+    } else {
+      likeCard();
+    }
+  };
 
   var dislikeCard = function dislikeCard() {
-    //Todo: Do animation with swing library here.
     if (currentCard < cards.length - 1) {
       setCurrentCard(currentCard + 1);
-    } //Todo: Push card into history
-
-  }; //Make data and card arrays more tightly coupled so not grabbing wrong data by accident.
-
+    }
+  };
 
   var likeCard = function likeCard() {
-    //Todo: Do animation with swing library here.        
     window.open(data[currentCard].externalLink, "_blank");
   };
 
@@ -474,37 +484,88 @@ var CardContainer = function CardContainer(_ref) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 43
+        lineNumber: 55
       },
       __self: this
-    }, cards[currentCard], react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-      onClick: dislikeCard,
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_swipy__WEBPACK_IMPORTED_MODULE_1___default.a, {
+      limit: 300,
+      buttons: function buttons(_ref2) {
+        var left = _ref2.left,
+            right = _ref2.right;
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CardContainerStyles__WEBPACK_IMPORTED_MODULE_3__["CardContainerButtons"], {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 59
+          },
+          __self: this
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: left,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 60
+          },
+          __self: this
+        }, "Reject"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: right,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 61
+          },
+          __self: this
+        }, "Accept"));
+      },
+      onSwipe: function onSwipe(dir) {
+        direction = dir;
+      },
+      onAfterSwipe: onAfterSwipe,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 45
+        lineNumber: 56
       },
       __self: this
-    }, "Dislike"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-      onClick: likeCard,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 46
-      },
-      __self: this
-    }, "Like"));
+    }, cards[currentCard]));
   }
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     role: "img",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 51
+      lineNumber: 74
     },
     __self: this
   }, "\u2639\uFE0F No data found");
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (CardContainer);
+
+/***/ }),
+
+/***/ "./src/components/CardContainer/CardContainerStyles.js":
+/*!*************************************************************!*\
+  !*** ./src/components/CardContainer/CardContainerStyles.js ***!
+  \*************************************************************/
+/*! exports provided: CardContainerButtons */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CardContainerButtons", function() { return CardContainerButtons; });
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "styled-components");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_0__);
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n    display: flex;\n    justify-content: space-between;\n\n    margin: 20px;\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+
+var CardContainerButtons = styled_components__WEBPACK_IMPORTED_MODULE_0___default.a.div(_templateObject());
 
 /***/ }),
 
@@ -680,6 +741,17 @@ module.exports = require("prop-types");
 /***/ (function(module, exports) {
 
 module.exports = require("react");
+
+/***/ }),
+
+/***/ "react-swipy":
+/*!******************************!*\
+  !*** external "react-swipy" ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("react-swipy");
 
 /***/ }),
 
