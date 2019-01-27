@@ -432,48 +432,73 @@ var CardContainer = function CardContainer(_ref) {
       currentCard = _useState2[0],
       setCurrentCard = _useState2[1];
 
-  var cards = [];
-  data.forEach(function (set) {
-    cards.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Card_Card__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      data: set,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 13
-      },
-      __self: this
-    }));
-  });
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      cards = _useState4[0],
+      setCards = _useState4[1];
+  /*
+      Using the useEffect hook to recreate the functionality of the
+      componentDidMount lifecycle method. The setCards function call will only
+      happen if the data prop has changed.
+  */
 
-  var nextCard = function nextCard() {
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    setCards(data.map(function (set) {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Card_Card__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        data: set,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 17
+        },
+        __self: this
+      });
+    }));
+  }, [data]);
+
+  var dislikeCard = function dislikeCard() {
+    //Todo: Do animation with swing library here.
     if (currentCard < cards.length - 1) {
       setCurrentCard(currentCard + 1);
-    } else {
-      setCurrentCard(0);
-    }
+    } //Todo: Push card into history
+
+  }; //Make data and card arrays more tightly coupled so not grabbing wrong data by accident.
+
+
+  var likeCard = function likeCard() {
+    //Todo: Do animation with swing library here.        
+    window.open(data[currentCard].externalLink, "_blank");
   };
 
   if (cards.length > 0) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 31
+        lineNumber: 43
       },
       __self: this
     }, cards[currentCard], react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-      onClick: nextCard,
+      onClick: dislikeCard,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 33
+        lineNumber: 45
       },
       __self: this
-    }, "Next"));
+    }, "Dislike"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      onClick: likeCard,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 46
+      },
+      __self: this
+    }, "Like"));
   }
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     role: "img",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 38
+      lineNumber: 51
     },
     __self: this
   }, "\u2639\uFE0F No data found");
@@ -600,22 +625,26 @@ __webpack_require__.r(__webpack_exports__);
   name: "Big Ben",
   distance: 4,
   rating: 4,
-  image: "https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/MA_00514390_hsmjfe.jpg"
+  image: "https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/MA_00514390_hsmjfe.jpg",
+  externalLink: "https://google.co.uk"
 }, {
   name: "Eiffel Tower",
   distance: 243,
   rating: 4,
-  image: "https://www.toureiffel.paris/themes/custom/tour_eiffel/img/picto_myGoogleBusiness_1.jpg"
+  image: "https://www.toureiffel.paris/themes/custom/tour_eiffel/img/picto_myGoogleBusiness_1.jpg",
+  externalLink: "https://google.co.uk"
 }, {
   name: "Petronas Twin Towers",
   distance: 16000,
   rating: 2.3,
-  image: "https://2.bp.blogspot.com/-r-UjhIS_PnE/Wa-jeZ4pYyI/AAAAAAAAd_g/2Vm4ETMGfGsjU-hKsCISkAFQ_rCGNYJQACLcBGAs/s1600/kuala%2Blumpur%2Btour-103-2.jpg"
+  image: "https://2.bp.blogspot.com/-r-UjhIS_PnE/Wa-jeZ4pYyI/AAAAAAAAd_g/2Vm4ETMGfGsjU-hKsCISkAFQ_rCGNYJQACLcBGAs/s1600/kuala%2Blumpur%2Btour-103-2.jpg",
+  externalLink: "https://google.co.uk"
 }, {
   name: "Moscow Kremlin",
   distance: 9085,
   rating: 5,
-  image: "https://www.dookinternational.com/blog/wp-content/uploads/2016/11/Moscow-Kremlin-2.jpg"
+  image: "https://www.dookinternational.com/blog/wp-content/uploads/2016/11/Moscow-Kremlin-2.jpg",
+  externalLink: "https://google.co.uk"
 }]);
 
 /***/ }),

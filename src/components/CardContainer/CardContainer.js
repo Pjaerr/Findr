@@ -1,28 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Card from '../Card/Card';
 
 const CardContainer = ({ data }) =>
 {
     const [currentCard, setCurrentCard] = useState(0);
+    const [cards, setCards] = useState([]);
 
-    let cards = [];
-
-    data.forEach(set =>
+    /*
+        Using the useEffect hook to recreate the functionality of the
+        componentDidMount lifecycle method. The setCards function call will only
+        happen if the data prop has changed.
+    */
+    useEffect(() =>
     {
-        cards.push(<Card data={set} />);
-    });
+        setCards(data.map(set => <Card data={set} />));
 
-    const nextCard = function ()
+    }, [data]);
+
+    const dislikeCard = function ()
     {
+        //Todo: Do animation with swing library here.
+
         if (currentCard < cards.length - 1)
         {
-            setCurrentCard(currentCard + 1);
+            setCurrentCard((currentCard + 1));
         }
-        else
-        {
-            setCurrentCard(0);
-        }
+
+        //Todo: Push card into history
+    }
+
+    //Make data and card arrays more tightly coupled so not grabbing wrong data by accident.
+    const likeCard = function ()
+    {
+        //Todo: Do animation with swing library here.        
+        window.open(data[currentCard].externalLink, "_blank");
     }
 
     if (cards.length > 0)
@@ -30,7 +42,8 @@ const CardContainer = ({ data }) =>
         return (
             <div>
                 {cards[currentCard]}
-                <button onClick={nextCard}>Next</button>
+                <button onClick={dislikeCard}>Dislike</button>
+                <button onClick={likeCard}>Like</button>
             </div>
         );
     }

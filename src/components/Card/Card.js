@@ -27,7 +27,7 @@ Card.propTypes = {
         name: PropTypes.string.isRequired,
         distance: PropTypes.number.isRequired,
         rating: PropTypes.number.isRequired,
-        image: PropTypes.string.isRequired
+        image: PropTypes.string.isRequired,
     })
 };
 
