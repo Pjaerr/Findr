@@ -8861,7 +8861,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _GlobalStyles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../GlobalStyles */ "./GlobalStyles.js");
 /* harmony import */ var _src_components_CardContainer_CardContainer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../src/components/CardContainer/CardContainer */ "./src/components/CardContainer/CardContainer.js");
 /* harmony import */ var _test_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../test-data */ "./test-data.js");
-var _jsxFileName = "C:\\Users\\Pjaer\\Desktop\\Findr\\pages\\index.js";
+/* harmony import */ var _src_utils_transformVenueData__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../src/utils/transformVenueData */ "./src/utils/transformVenueData.js");
+var _jsxFileName = "D:\\findr\\pages\\index.js";
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
@@ -8901,6 +8902,7 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
  //Import test data
 
 
+
 var GloballyInjectedStyles = Object(styled_components__WEBPACK_IMPORTED_MODULE_1__["createGlobalStyle"])(_templateObject(), _GlobalStyles__WEBPACK_IMPORTED_MODULE_2__["default"].fontFamily, _GlobalStyles__WEBPACK_IMPORTED_MODULE_2__["default"].backgroundColour);
 var Page = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject2());
 
@@ -8910,6 +8912,15 @@ var index = function index() {
       pointsOfInterestData = _useState2[0],
       setPointsOfInterestData = _useState2[1];
 
+  var dataParameters = {
+    clientID: "0CAEJ3WZKO4UWHOZPUCPT1HZOO2SJBY0IC3BHECIPKQNNETK",
+    clientSecret: "DO2S4JEYTJLHFWJCDWYHH0PQGAPWSQ0MGL5HVFXOO41X0PC1",
+    v: "20180323",
+    latLng: "51.508530,-0.076132",
+    query: "coffee",
+    limit: "10"
+  };
+  var url = "https://api.foursquare.com/v2/venues/explore?client_id=".concat(dataParameters.clientID, "&client_secret=").concat(dataParameters.clientSecret, "&v=").concat(dataParameters.v, "&limit=").concat(dataParameters.limit, "&ll=").concat(dataParameters.latLng, "&query=").concat(dataParameters.query);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     /* 
         In here we would make our fetch request for the data, do any modifications and
@@ -8919,31 +8930,41 @@ var index = function index() {
         directly. We also want to specify that we only want to run this code if and when the data
         changes, hence the [testData].
     */
-    setPointsOfInterestData(_test_data__WEBPACK_IMPORTED_MODULE_4__["default"]);
+    fetch(url).then(function (response) {
+      return response.json();
+    }).then(function (data) {
+      var venues = [];
+      data.response.groups[0].items.forEach(function (item) {
+        venues.push(Object(_src_utils_transformVenueData__WEBPACK_IMPORTED_MODULE_5__["default"])(item.venue));
+      });
+      setPointsOfInterestData(venues);
+    }).catch(function (err) {
+      console.error("Error whilst fetching data. \n Error: " + err);
+    });
   }, [_test_data__WEBPACK_IMPORTED_MODULE_4__["default"]]);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Page, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 50
+      lineNumber: 81
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(GloballyInjectedStyles, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 51
+      lineNumber: 82
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 53
+      lineNumber: 84
     },
     __self: this
   }, "Findr"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_src_components_CardContainer_CardContainer__WEBPACK_IMPORTED_MODULE_3__["default"], {
     data: pointsOfInterestData,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 54
+      lineNumber: 85
     },
     __self: this
   }));
@@ -8987,7 +9008,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _Rating_Rating__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Rating/Rating */ "./src/components/Rating/Rating.js");
 /* harmony import */ var _CardStyles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./CardStyles */ "./src/components/Card/CardStyles.js");
-var _jsxFileName = "C:\\Users\\Pjaer\\Desktop\\Findr\\src\\components\\Card\\Card.js";
+var _jsxFileName = "D:\\findr\\src\\components\\Card\\Card.js";
 
  //Components
 
@@ -9124,7 +9145,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_swipy__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_swipy__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _Card_Card__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Card/Card */ "./src/components/Card/Card.js");
 /* harmony import */ var _CardContainerStyles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./CardContainerStyles */ "./src/components/CardContainer/CardContainerStyles.js");
-var _jsxFileName = "C:\\Users\\Pjaer\\Desktop\\Findr\\src\\components\\CardContainer\\CardContainer.js";
+var _jsxFileName = "D:\\findr\\src\\components\\CardContainer\\CardContainer.js";
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
@@ -9318,7 +9339,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _RatingStyles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RatingStyles */ "./src/components/Rating/RatingStyles.js");
-var _jsxFileName = "C:\\Users\\Pjaer\\Desktop\\Findr\\src\\components\\Rating\\Rating.js";
+var _jsxFileName = "D:\\findr\\src\\components\\Rating\\Rating.js";
 
 
 
@@ -9406,6 +9427,39 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 var RatingContainer = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject());
+
+/***/ }),
+
+/***/ "./src/utils/transformVenueData.js":
+/*!*****************************************!*\
+  !*** ./src/utils/transformVenueData.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/** Takes a Foursquare Venue object (response.groups[0].items.venue) and transforms
+ * it into a JS object that can be used in the application.*/
+var transformVenueData = function transformVenueData(venue) {
+  var data = {
+    name: venue.name,
+    distance: (venue.location.distance / 1000 * 0.6137).toFixed(2),
+    rating: 3.5,
+    image: "",
+    externalLink: "https://www.google.com/maps/search/" + venue.name + "," + venue.location.formattedAddress.toString().replace(/ /g, "+")
+  };
+
+  if (venue.photos.count > 0) {
+    data.image = venue.photos.groups[0];
+  } else {
+    data.image = "https://placehold.it/800x600";
+  }
+
+  return data;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (transformVenueData);
 
 /***/ }),
 
