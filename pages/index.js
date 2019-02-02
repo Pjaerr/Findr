@@ -46,7 +46,7 @@ const index = () =>
 
     // let url = `https://api.foursquare.com/v2/venues/explore?client_id=${dataParameters.clientID}&client_secret=${dataParameters.clientSecret}&v=${dataParameters.v}&limit=${dataParameters.limit}&ll=${dataParameters.latLng}&query=${dataParameters.query}`;
 
-    let url = `/placedata/${dataParameters.v}/${dataParameters.latLng}/${dataParameters.limit}/${dataParameters.query}`;
+    let url = `/placedata/v=${dataParameters.v}&latLng=${dataParameters.latLng}&limit=${dataParameters.limit}&query=${dataParameters.query}`;
 
     useEffect(() =>
     {

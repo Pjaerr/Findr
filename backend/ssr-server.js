@@ -19,7 +19,7 @@ app.prepare()
     {
         const server = express();
 
-        server.get('/placedata/:v/:latLng/:limit/:query', (req, res) =>
+        server.get('/placedata/v=:v&latLng=:latLng&limit=:limit&query=:query', (req, res) =>
         {
             let client_id = "client_id=" + foursquareApiData.clientID + "&";
             let client_secret = "client_secret=" + foursquareApiData.clientSecret + "&";
@@ -33,9 +33,9 @@ app.prepare()
 
             request(apiQuery, function (error, response, body)
             {
-                if (error) console.log('error:', error); // Print the error if one occurred
+                if (error) console.log('error:', error);
 
-                if (response && body)
+                if (body)
                 {
                     res.send(body);
                 }
