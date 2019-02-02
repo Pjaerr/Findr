@@ -44,21 +44,10 @@ const index = () =>
         limit: "10"
     };
 
-    // let url = `https://api.foursquare.com/v2/venues/explore?client_id=${dataParameters.clientID}&client_secret=${dataParameters.clientSecret}&v=${dataParameters.v}&limit=${dataParameters.limit}&ll=${dataParameters.latLng}&query=${dataParameters.query}`;
-
     let url = `/placedata/v=${dataParameters.v}&latLng=${dataParameters.latLng}&limit=${dataParameters.limit}&query=${dataParameters.query}`;
 
     useEffect(() =>
     {
-        /* 
-            In here we would make our fetch request for the data, do any modifications and
-            get an output matching our predefined data strucure. We would then pass that data
-            into a setPointsOfInterestData() function call to re-render the component with the
-            fetched data. For now we have a static js file that returns an array so we pass it in
-            directly. We also want to specify that we only want to run this code if and when the data
-            changes, hence the [testData].
-        */
-
         fetch(url)
             .then(response => response.json())
             .then(data =>
@@ -77,7 +66,7 @@ const index = () =>
                 console.error("Error whilst fetching data on Frontend \n Error: " + err);
             })
 
-    }, [testData]);
+    }, []);
 
     return (
         <Page>
