@@ -4,7 +4,7 @@
   "description": "Findr is a web app made with **React**, **JavaScript** and the **Google Maps API** that gathers nearby places matching a specific category within a specific search radius. The results are grabbed in real-time and are presented in a card with an image, title, distance in miles and star rating, all taken from google maps. There exists two buttons, dismiss and like that sit below the card, the dismiss button loads the next 'card' which is a new location grabbed from google maps, and the like button takes you to the google maps page for the location on the card.",
   "main": "index.js",
   "scripts": {
-    "dev": "next",
+    "dev": "node ./backend/ssr-server.js",
     "build": "next build",
     "start": "next start"
   },
@@ -20,11 +20,14 @@
   },
   "homepage": "https://github.com/Pjaerr/Findr#readme",
   "dependencies": {
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
     "next": "^7.0.2",
     "prop-types": "^15.6.2",
     "react": "next",
     "react-dom": "next",
     "react-swipy": "0.0.6",
+    "request": "^2.88.0",
     "styled-components": "^4.1.3"
   }
 }

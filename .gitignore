@@ -5,6 +5,8 @@
 
 /.next
 
+.env
+
 # testing
 /coverage
 

@@ -44,7 +44,9 @@ const index = () =>
         limit: "10"
     };
 
-    let url = `https://api.foursquare.com/v2/venues/explore?client_id=${dataParameters.clientID}&client_secret=${dataParameters.clientSecret}&v=${dataParameters.v}&limit=${dataParameters.limit}&ll=${dataParameters.latLng}&query=${dataParameters.query}`;
+    // let url = `https://api.foursquare.com/v2/venues/explore?client_id=${dataParameters.clientID}&client_secret=${dataParameters.clientSecret}&v=${dataParameters.v}&limit=${dataParameters.limit}&ll=${dataParameters.latLng}&query=${dataParameters.query}`;
+
+    let url = `/placedata/${dataParameters.v}/${dataParameters.latLng}/${dataParameters.limit}/${dataParameters.query}`;
 
     useEffect(() =>
     {
@@ -72,7 +74,7 @@ const index = () =>
             })
             .catch(err =>
             {
-                console.error("Error whilst fetching data. \n Error: " + err);
+                console.error("Error whilst fetching data on Frontend \n Error: " + err);
             })
 
     }, [testData]);
