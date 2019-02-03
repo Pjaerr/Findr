@@ -7,9 +7,7 @@ import GlobalStyles from '../GlobalStyles';
 //Import Components
 import CardContainer from '../src/components/CardContainer/CardContainer';
 
-//Import test data
-import testData from '../test-data';
-
+//Import Utils
 import transformVenueData from '../src/utils/transformVenueData';
 
 const GloballyInjectedStyles = createGlobalStyle`
@@ -33,18 +31,17 @@ const Page = styled.div`
 
 const index = () =>
 {
-    const [pointsOfInterestData, setPointsOfInterestData] = useState(testData);
+    const [pointsOfInterestData, setPointsOfInterestData] = useState([]);
 
     let dataParameters = {
         clientID: "0CAEJ3WZKO4UWHOZPUCPT1HZOO2SJBY0IC3BHECIPKQNNETK",
         clientSecret: "DO2S4JEYTJLHFWJCDWYHH0PQGAPWSQ0MGL5HVFXOO41X0PC1",
-        v: "20180323",
         latLng: "51.508530,-0.076132",
         query: "coffee",
         limit: "10"
     };
 
-    let url = `/placedata/v=${dataParameters.v}&latLng=${dataParameters.latLng}&limit=${dataParameters.limit}&query=${dataParameters.query}`;
+    let url = `/placedata/latLng=${dataParameters.latLng}&limit=${dataParameters.limit}&query=${dataParameters.query}`;
 
     useEffect(() =>
     {
@@ -56,7 +53,12 @@ const index = () =>
 
                 data.response.groups[0].items.forEach(item =>
                 {
-                    venues.push(transformVenueData(item.venue));
+                    transformVenueData(item.venue)
+                        .then(transformedData =>
+                        {
+                            venues.push(transformedData);
+                        })
+                        .catch(error => console.error(error));
                 });
 
                 setPointsOfInterestData(venues);
@@ -64,8 +66,7 @@ const index = () =>
             .catch(err =>
             {
                 console.error("Error whilst fetching data on Frontend \n Error: " + err);
-            })
-
+            });
     }, []);
 
     return (

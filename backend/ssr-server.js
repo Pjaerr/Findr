@@ -9,26 +9,48 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 
 const foursquareApiData = {
-    baseUrl: "https://api.foursquare.com/v2/venues/explore?",
+    venueBaseUrl: "https://api.foursquare.com/v2/venues/explore?",
+    venueBasePhotosUrl: "https://api.foursquare.com/v2/venues/",
+    version: "20180323",
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
 };
+
+let client_id = "client_id=" + foursquareApiData.clientID + "&";
+let client_secret = "client_secret=" + foursquareApiData.clientSecret + "&";
+let v = "v=" + foursquareApiData.version + "&";
 
 app.prepare()
     .then(() =>
     {
         const server = express();
 
-        server.get('/placedata/v=:v&latLng=:latLng&limit=:limit&query=:query', (req, res) =>
+        server.get('/placedata/latLng=:latLng&limit=:limit&query=:query', (req, res) =>
         {
-            let client_id = "client_id=" + foursquareApiData.clientID + "&";
-            let client_secret = "client_secret=" + foursquareApiData.clientSecret + "&";
-            let v = "v=" + req.params.v + "&";
             let limit = "limit=" + req.params.limit + "&";
             let ll = "ll=" + req.params.latLng + "&";
             let query = "query=" + req.params.query;
 
-            let apiQuery = foursquareApiData.baseUrl + client_id + client_secret + v + limit + ll + query;
+            let apiQuery = foursquareApiData.venueBaseUrl + client_id + client_secret + v + limit + ll + query;
+
+
+            request(apiQuery, function (error, response, body)
+            {
+                if (error) console.log('error:', error);
+
+                if (body)
+                {
+                    res.send(body);
+                }
+            });
+        });
+
+        server.get('/placedata/photos/id=:locationId/limit=:limit', (req, res) =>
+        {
+            let locationId = req.params.locationId + "/photos?";
+            let limit = "limit=" + req.params.limit + "&";
+
+            let apiQuery = foursquareApiData.venueBasePhotosUrl + locationId + v + client_id + client_secret + limit;
 
 
             request(apiQuery, function (error, response, body)
