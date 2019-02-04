@@ -8,7 +8,7 @@ import GlobalStyles from '../GlobalStyles';
 import CardContainer from '../src/components/CardContainer/CardContainer';
 
 //Import Utils
-import transformVenueData from '../src/utils/transformVenueData';
+import getTransformedVenueData from '../src/utils/getTransformedVenueData';
 
 const GloballyInjectedStyles = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css?family=Montserrat:400,400i,700');
@@ -34,8 +34,6 @@ const index = () =>
     const [pointsOfInterestData, setPointsOfInterestData] = useState([]);
 
     let dataParameters = {
-        clientID: "0CAEJ3WZKO4UWHOZPUCPT1HZOO2SJBY0IC3BHECIPKQNNETK",
-        clientSecret: "DO2S4JEYTJLHFWJCDWYHH0PQGAPWSQ0MGL5HVFXOO41X0PC1",
         latLng: "51.508530,-0.076132",
         query: "coffee",
         limit: "10"
@@ -49,23 +47,16 @@ const index = () =>
             .then(response => response.json())
             .then(data =>
             {
-                let venues = [];
-
-                data.response.groups[0].items.forEach(item =>
-                {
-                    transformVenueData(item.venue)
-                        .then(transformedData =>
-                        {
-                            venues.push(transformedData);
-                        })
-                        .catch(error => console.error(error));
-                });
-
-                setPointsOfInterestData(venues);
+                getTransformedVenueData(data.response.groups[0].items)
+                    .then(venues => 
+                    {
+                        setPointsOfInterestData(venues);
+                    })
+                    .catch(err => console.error("Error getting transformed venue data on the frontend. \n Error: " + err));
             })
             .catch(err =>
             {
-                console.error("Error whilst fetching data on Frontend \n Error: " + err);
+                console.error("Error whilst fetching place data on frontend \n Error: " + err);
             });
     }, []);
 
