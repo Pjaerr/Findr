@@ -7,7 +7,10 @@ import { Page, GloballyInjectedStyles } from './styles/indexStyles';
 import CardContainer from '../src/components/CardContainer/CardContainer';
 
 //Import Utils
-import getPlaces from '../src/utils/getPlaces';
+import getPlacesByMultiQuery from '../src/utils/getPlacesByMultiQuery';
+
+// ! New york city latitude longitude for testing when not living in the middle of nowhere
+const NYC_LATLNG = { coords: { latitude: "40.6974034", longitude: "-74.1197633" } };
 
 const index = () =>
 {
@@ -21,7 +24,7 @@ const index = () =>
         {
             navigator.geolocation.getCurrentPosition(pos =>
             {
-                getPlaces(pos, "parks", 2)
+                getPlacesByMultiQuery(NYC_LATLNG, 2, ["attractions", "scenery"])
                     .then(places =>
                     {
                         setPointsOfInterestData(places);
