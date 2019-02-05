@@ -74,3 +74,9 @@ export const LoadingMessage = styled.div`
         }
     }
 `;
+
+export const HiddenCard = styled.div`
+    position: absolute;
+    z-index: -1;
+    top: 90px;
+`;

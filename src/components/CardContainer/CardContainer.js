@@ -4,7 +4,7 @@ import Swipeable from "react-swipy";
 
 import Card from '../Card/Card';
 
-import { CardContainerButtons, NextCard, CardContainerWrapper, LoadingMessage } from './CardContainerStyles';
+import { CardContainerButtons, NextCard, CardContainerWrapper, LoadingMessage, HiddenCard } from './CardContainerStyles';
 
 const CardContainer = ({ data }) =>
 {
@@ -66,6 +66,7 @@ const CardContainer = ({ data }) =>
                 >
                     {cards[currentCard]}
                 </Swipeable>
+                {currentCard + 1 < cards.length ? <HiddenCard>{cards[currentCard + 1]}</HiddenCard> : null}
             </CardContainerWrapper>
         );
     }

@@ -13,6 +13,8 @@ import getPlacesByMultiQuery from '../src/utils/getPlacesByMultiQuery';
 const NYC_LATLNG = { coords: { latitude: "40.6974034", longitude: "-74.1197633" } };
 const LONDON_LATLNG = { coords: { latitude: "51.528308", longitude: "-0.3817765" } };
 
+import testData from '../test-data';
+
 const index = () =>
 {
     const [pointsOfInterestData, setPointsOfInterestData] = useState([]);
@@ -21,11 +23,13 @@ const index = () =>
 
     useEffect(() =>
     {
+        // setPointsOfInterestData(testData);
+
         if ("geolocation" in navigator)
         {
             navigator.geolocation.getCurrentPosition(pos =>
             {
-                getPlacesByMultiQuery(NYC_LATLNG, 1, ["attractions"])
+                getPlacesByMultiQuery(NYC_LATLNG, 5, ["attractions"])
                     .then(places =>
                     {
                         setPointsOfInterestData(places);
