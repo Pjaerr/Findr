@@ -1,71 +1,52 @@
 import React, { useState, useEffect } from 'react';
 
-//Import Styled Components and Global Styles
-import styled, { createGlobalStyle } from 'styled-components';
-import GlobalStyles from '../GlobalStyles';
+//Import Styles
+import { Page, GloballyInjectedStyles } from './styles/indexStyles';
 
 //Import Components
 import CardContainer from '../src/components/CardContainer/CardContainer';
 
 //Import Utils
-import getTransformedVenueData from '../src/utils/getTransformedVenueData';
-
-const GloballyInjectedStyles = createGlobalStyle`
-    @import url('https://fonts.googleapis.com/css?family=Montserrat:400,400i,700');
-
-    body {
-        font-family: ${GlobalStyles.fontFamily};
-        background-color: ${GlobalStyles.backgroundColour};
-
-        overflow: hidden;
-    }
-`;
-
-const Page = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-`;
-
+import getPlaces from '../src/utils/getPlaces';
 
 const index = () =>
 {
     const [pointsOfInterestData, setPointsOfInterestData] = useState([]);
-
-    let dataParameters = {
-        latLng: "51.508530,-0.076132",
-        query: "coffee",
-        limit: "10"
-    };
-
-    let url = `/placedata/latLng=${dataParameters.latLng}&limit=${dataParameters.limit}&query=${dataParameters.query}`;
+    const [browserGeolocationDeclined, setBrowserGeolocationDeclined] = useState(false);
+    const [browserSupportsGeolocation, setBrowserSupportsGeolocation] = useState(true);
 
     useEffect(() =>
     {
-        fetch(url)
-            .then(response => response.json())
-            .then(data =>
+        if ("geolocation" in navigator)
+        {
+            navigator.geolocation.getCurrentPosition(pos =>
             {
-                getTransformedVenueData(data.response.groups[0].items)
-                    .then(venues => 
+                getPlaces(pos, "parks", 2)
+                    .then(places =>
                     {
-                        setPointsOfInterestData(venues);
-                    })
-                    .catch(err => console.error("Error getting transformed venue data on the frontend. \n Error: " + err));
-            })
-            .catch(err =>
-            {
-                console.error("Error whilst fetching place data on frontend \n Error: " + err);
-            });
+                        setPointsOfInterestData(places);
+                    });
+            },
+                error =>
+                {
+                    if (error.code === error.PERMISSION_DENIED)
+                    {
+                        setBrowserGeolocationDeclined(true);
+                    }
+                });
+        }
+        else
+        {
+            setBrowserSupportsGeolocation(false);
+        }
     }, []);
 
     return (
         <Page>
             <GloballyInjectedStyles />
-
             <h1>Findr</h1>
-            <CardContainer data={pointsOfInterestData} />
+            {browserSupportsGeolocation ? <CardContainer data={pointsOfInterestData} /> : <h2>Your browser doesn't support geolocation!</h2>}
+            {browserGeolocationDeclined ? <h2>You need to enable geolocation!</h2> : null}
         </Page>
     );
 };

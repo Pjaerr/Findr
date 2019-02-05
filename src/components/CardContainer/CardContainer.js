@@ -4,7 +4,7 @@ import Swipeable from "react-swipy";
 
 import Card from '../Card/Card';
 
-import { CardContainerButtons, NextCard, CardContainerWrapper } from './CardContainerStyles';
+import { CardContainerButtons, NextCard, CardContainerWrapper, LoadingMessage } from './CardContainerStyles';
 
 const CardContainer = ({ data }) =>
 {
@@ -70,7 +70,7 @@ const CardContainer = ({ data }) =>
         );
     }
 
-    return <span role="img">☹️ No data found</span>;
+    return <LoadingMessage />;
 };
 
 export default CardContainer;
