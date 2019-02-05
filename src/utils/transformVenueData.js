@@ -10,15 +10,23 @@ const transformVenueData = (venue) =>
 		externalLink: "https://www.google.com/maps/search/" + venue.name + "," + venue.location.formattedAddress.toString().replace(/ /g, "+")
 	};
 
-	/* Grab the image for the venue being transformed and when found, return a promise to be resolved that will
+	/* Grab the image and rating for the venue being transformed and when found, return a promise to be resolved that will
 	give the resolver the entire transformed venue object */
 	return new Promise((resolve, reject) =>
 	{
-		fetch(`/placedata/photos/id=${venue.id}/limit=1`)
+		fetch(`/placedata/photos/id=${venue.id}`)
 			.then(response => response.json())
 			.then(data =>
 			{
-				let imageObject = data.response.photos.items[0];
+				console.log(data);
+				let imageObject = data.response.venue.bestPhoto;
+
+				if (data.response.venue.rating > 0)
+				{
+					transformedData.rating = data.response.venue.rating / 2;
+				}
+
+				transformedData.externalLink = data.response.venue.canonicalUrl;
 
 				if (imageObject)
 				{

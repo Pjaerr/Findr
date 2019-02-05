@@ -45,13 +45,11 @@ app.prepare()
             });
         });
 
-        server.get('/placedata/photos/id=:locationId/limit=:limit', (req, res) =>
+        server.get('/placedata/photos/id=:locationId', (req, res) =>
         {
-            let locationId = req.params.locationId + "/photos?";
-            let limit = "limit=" + req.params.limit + "&";
+            let locationId = req.params.locationId + "?";
 
-            let apiQuery = foursquareApiData.venueBasePhotosUrl + locationId + v + client_id + client_secret + limit;
-
+            let apiQuery = foursquareApiData.venueBasePhotosUrl + locationId + v + client_id + client_secret;
 
             request(apiQuery, function (error, response, body)
             {
