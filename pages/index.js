@@ -47,7 +47,7 @@ const index = () => {
   return (
     <Page>
       <GloballyInjectedStyles />
-      <h1>Findr</h1>
+      <h2>Findr</h2>
       {browserSupportsGeolocation ? (
         <CardContainer data={pointsOfInterestData} />
       ) : (
