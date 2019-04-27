@@ -43,7 +43,8 @@ const CardContainer = ({ data }) => {
     return (
       <Styled.CardContainerWrapper>
         <Swipeable
-          limit={300}
+          limit={100}
+          min={10}
           buttons={({ left, right }) => (
             <Styled.CardContainerButtons>
               <button onClick={left}>

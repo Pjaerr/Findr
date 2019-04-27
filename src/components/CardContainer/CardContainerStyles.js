@@ -28,7 +28,7 @@ export const CardContainerButtons = styled.div`
 `;
 
 export const CardContainerWrapper = styled.div`
-  height: 400px;
+  height: 420px;
 
   @media (min-width: ${GlobalStyles.breakpoints.xs}) {
     height: 440px;
