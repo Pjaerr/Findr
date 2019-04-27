@@ -7,11 +7,6 @@ export const CardContainerButtons = styled.div`
 
   margin-right: 3.5rem;
   margin-left: 3.5rem;
-  margin-top: 0.6rem;
-
-  @media (min-width: 540px) {
-    margin-top: 1rem;
-  }
 
   button {
     width: 3.2rem;
@@ -32,7 +27,17 @@ export const CardContainerButtons = styled.div`
   }
 `;
 
-export const CardContainerWrapper = styled.div``;
+export const CardContainerWrapper = styled.div`
+  height: 400px;
+
+  @media (min-width: ${GlobalStyles.breakpoints.xs}) {
+    height: 440px;
+  }
+
+  @media (min-width: ${GlobalStyles.breakpoints.medium}) {
+    height: 460px;
+  }
+`;
 
 export const LoadingMessage = styled.div`
   width: 40px;
@@ -75,5 +80,5 @@ export const LoadingMessage = styled.div`
 export const HiddenCard = styled.div`
   position: absolute;
   z-index: -1;
-  top: 90px;
+  top: 77px;
 `;
