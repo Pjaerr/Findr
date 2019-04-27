@@ -43,7 +43,8 @@ const CardContainer = ({ data }) => {
     return (
       <Styled.CardContainerWrapper>
         <Swipeable
-          limit={300}
+          limit={100}
+          min={10}
           buttons={({ left, right }) => (
             <Styled.CardContainerButtons>
               <button onClick={left}>
@@ -61,7 +62,9 @@ const CardContainer = ({ data }) => {
         >
           {cards[currentCard]}
         </Swipeable>
-        {currentCard + 1 < cards.length ? <HiddenCard>{cards[currentCard + 1]}</HiddenCard> : null}
+        {currentCard + 1 < cards.length ? (
+          <Styled.HiddenCard>{cards[currentCard + 1]}</Styled.HiddenCard>
+        ) : null}
       </Styled.CardContainerWrapper>
     );
   }
