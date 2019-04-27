@@ -5,67 +5,77 @@ export const CardWrapper = styled.div`
   background: ${GlobalStyles.secondaryBackgroundColour};
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
 
-  width: 30rem;
-  height: 30rem;
-
-  @media (max-width: 992px) {
-    width: 25rem;
-    height: 25rem;
-  }
-
-  @media (max-width: 768px) {
-    width: 20rem;
-  }
-
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome and Opera */
-
+  /*Make it work nicely on mobile*/
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   cursor: -webkit-grab;
-
   &:active {
     cursor: -webkit-grabbing;
   }
+
+  padding: 10px;
+
+  width: 300px;
+  height: 360px;
+
+  @media (min-width: ${GlobalStyles.breakpoints.xxs}) {
+    width: 320px;
+  }
+
+  @media (min-width: ${GlobalStyles.breakpoints.xs}) {
+    width: 340px;
+  }
+
+  @media (min-width: ${GlobalStyles.breakpoints.small}) {
+    width: 360px;
+  }
+
+  @media (min-width: ${GlobalStyles.breakpoints.medium}) {
+    width: 400px;
+    height: 400px;
+  }
+
+  max-height: 400px;
 `;
 
 export const CardContent = styled.div`
-  padding-top: 10px;
-  padding-left: 20px;
-  padding-bottom: 20px;
+  h2 {
+    height: 60px;
+    font-size: 1rem;
+    overflow: hidden;
 
-  @media (max-width: 540px) {
-    h2 {
-      font-size: 1.2em;
+    @media (min-width: ${GlobalStyles.breakpoints.medium}) {
+      font-size: 1.1rem;
     }
 
-    h4 {
-      font-size: 1em;
+    @media (min-width: ${GlobalStyles.breakpoints.large}) {
+      font-size: 1.2rem;
+    }
+  }
+
+  h4 {
+    font-size: 0.8rem;
+
+    @media (min-width: ${GlobalStyles.breakpoints.medium}) {
+      font-size: 0.9rem;
     }
 
-    img {
-      width: 18px;
-      height: 18px;
+    @media (min-width: ${GlobalStyles.breakpoints.large}) {
+      font-size: 1rem;
     }
   }
 `;
 
 export const CardImage = styled.div`
-    width: 30rem;
-    height: 20rem;
+    width: 100%;
+    height: 200px;
 
-    @media (max-width: 992px)
-    {
-        width: 25rem;
-        height: 15rem;
-    }
-
-    @media (max-width: 768px)
-    {
-        width: 20rem;
+    @media (min-width: ${GlobalStyles.breakpoints.medium}) {
+      height: 240px;
     }
 
     background-image: url('${props => props.image}');
