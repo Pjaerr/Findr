@@ -14,7 +14,7 @@ const categories = [
   },
   {
     name: 'Food',
-    subCategories: ['Chinese', 'American']
+    subCategories: ['Chinese Food', 'American Food']
   }
 ];
 

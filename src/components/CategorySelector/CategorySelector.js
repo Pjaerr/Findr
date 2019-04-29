@@ -5,6 +5,9 @@ import styled from 'styled-components';
 
 const CategoriesContainer = styled.div`
   display: flex;
+  flex-direction: column;
+
+  width: 100%;
 `;
 
 const CategorySelector = ({ categories }) => {
