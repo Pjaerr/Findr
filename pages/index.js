@@ -1,13 +1,27 @@
 import React from 'react';
 
-import Link from 'next/link';
-
 import Page from '../src/components/Page/Page';
+import CategorySelector from '../src/components/CategorySelector/CategorySelector';
+
+const categories = [
+  {
+    name: 'Attractions',
+    subCategories: ['Museums', 'Historic']
+  },
+  {
+    name: 'Sights',
+    subCategories: ['Landmarks', 'Nature']
+  },
+  {
+    name: 'Food',
+    subCategories: ['Chinese', 'American']
+  }
+];
 
 const index = () => {
   return (
     <Page>
-      <Link href={{ pathname: '/cards', query: { category: 'attractions' } }}>Click me</Link>
+      <CategorySelector categories={categories} />
     </Page>
   );
 };
