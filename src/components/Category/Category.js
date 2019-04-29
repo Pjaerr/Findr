@@ -9,7 +9,8 @@ const CategoryWrapper = styled.div`
   button {
     display: inline-block;
     border: none;
-    padding: 1rem 2rem;
+    padding-right: 2rem;
+    padding-bottom: 1rem;
     margin: 0;
     text-decoration: none;
     background: none;
@@ -17,6 +18,8 @@ const CategoryWrapper = styled.div`
     cursor: pointer;
     text-align: center;
   }
+
+  margin-bottom: 20px;
 `;
 
 const Arrow = styled.i`
@@ -33,12 +36,29 @@ const Arrow = styled.i`
 const SubCategoryContainer = styled.div`
   display: ${props => (props.visible ? 'flex' : 'none')};
   flex-wrap: wrap;
+
+  width: 100%;
 `;
 
 const SubCategory = styled.div`
-  padding: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   margin: 5px;
-  outline: 1px solid black;
+
+  background: ${GlobalStyles.secondaryBackgroundColour};
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+
+  a {
+    text-decoration: none;
+    color: ${GlobalStyles.textColour};
+    padding: 20px;
+  }
+
+  transition: transform 0.2s ease;
+
+  :hover {
+    transform: translateY(-5px);
+  }
 `;
 
 const Category = ({ name, subCategories }) => {
