@@ -17,9 +17,9 @@ export const Page = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
 
-export const Anchor = styled.a`
-  text-decoration: none;
-  color: ${GlobalStyles.textColour};
+  a {
+    text-decoration: none;
+    color: ${GlobalStyles.textColour};
+  }
 `;

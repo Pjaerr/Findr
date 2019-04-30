@@ -5,7 +5,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import GlobalStyles from '../../../GlobalStyles';
 
-const CategoryWrapper = styled.div`
+const MainCategoryContainer = styled.div`
   button {
     display: inline-block;
     border: none;
@@ -17,9 +17,13 @@ const CategoryWrapper = styled.div`
     font-size: 1.5em;
     cursor: pointer;
     text-align: center;
-  }
 
-  margin-bottom: 20px;
+    transition: transform 0.2s ease;
+
+    :hover {
+      transform: translateY(-5px);
+    }
+  }
 `;
 
 const Arrow = styled.i`
@@ -30,14 +34,13 @@ const Arrow = styled.i`
   margin-left: -15px;
   transition: transform 0.25s ease;
   transform: rotate(${props => props.angle});
-  align-self: center;
 `;
 
 const SubCategoryContainer = styled.div`
   display: ${props => (props.visible ? 'flex' : 'none')};
   flex-wrap: wrap;
-
-  width: 100%;
+  justify-content: center;
+  padding: 20px;
 `;
 
 const SubCategory = styled.div`
@@ -65,16 +68,18 @@ const Category = ({ name, subCategories }) => {
   const [showSubCategories, setShowSubCategories] = useState(false);
 
   return (
-    <CategoryWrapper>
-      <button
-        onClick={() => {
-          setShowSubCategories(!showSubCategories);
-        }}
-      >
-        {name}
-      </button>
+    <React.Fragment>
+      <MainCategoryContainer>
+        <button
+          onClick={() => {
+            setShowSubCategories(!showSubCategories);
+          }}
+        >
+          {name}
+        </button>
 
-      <Arrow angle={showSubCategories ? '45deg' : '-45deg'} />
+        <Arrow angle={showSubCategories ? '45deg' : '-45deg'} />
+      </MainCategoryContainer>
 
       <SubCategoryContainer visible={showSubCategories}>
         {subCategories.map(subCategory => (
@@ -85,7 +90,7 @@ const Category = ({ name, subCategories }) => {
           </SubCategory>
         ))}
       </SubCategoryContainer>
-    </CategoryWrapper>
+    </React.Fragment>
   );
 };
 
