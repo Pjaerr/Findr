@@ -6,44 +6,33 @@ import styled from 'styled-components';
 import GlobalStyles from '../../../GlobalStyles';
 
 const MainCategoryContainer = styled.div`
-  button {
-    display: inline-block;
-    border: none;
-    padding-right: 2rem;
-    padding-bottom: 1rem;
-    margin: 0;
-    text-decoration: none;
-    background: none;
-    font-size: 1.5em;
-    cursor: pointer;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 
-    transition: transform 0.2s ease;
-
-    :hover {
-      transform: translateY(-5px);
-    }
+  h3 {
+    margin-bottom: -20px;
   }
 `;
 
-const Arrow = styled.i`
-  border: solid ${GlobalStyles.textColour};
-  border-width: 0 4px 4px 0;
-  display: inline-block;
-  padding: 3px;
-  margin-left: -15px;
-  transition: transform 0.25s ease;
-  transform: rotate(${props => props.angle});
-`;
-
-const SubCategoryContainer = styled.div`
-  display: ${props => (props.visible ? 'flex' : 'none')};
-  flex-wrap: wrap;
-  justify-content: center;
+const SubCategoryContainer = styled.ul`
+  overflow-x: auto;
+  display: flex;
   padding: 20px;
+  width: 100%;
+  white-space: nowrap;
+  margin-left: 10px;
+  margin-right: 10px;
 `;
 
-const SubCategory = styled.div`
+const SubCategory = styled.li`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  list-style: none;
   padding-top: 20px;
   padding-bottom: 20px;
   margin: 5px;
@@ -65,23 +54,16 @@ const SubCategory = styled.div`
 `;
 
 const Category = ({ name, subCategories }) => {
-  const [showSubCategories, setShowSubCategories] = useState(false);
-
   return (
-    <React.Fragment>
-      <MainCategoryContainer>
-        <button
-          onClick={() => {
-            setShowSubCategories(!showSubCategories);
-          }}
-        >
-          {name}
-        </button>
+    <MainCategoryContainer>
+      <h3>{name}</h3>
 
-        <Arrow angle={showSubCategories ? '45deg' : '-45deg'} />
-      </MainCategoryContainer>
-
-      <SubCategoryContainer visible={showSubCategories}>
+      <SubCategoryContainer>
+        <SubCategory>
+          <Link href={{ pathname: '/cards', query: { category: name } }}>
+            <a>All</a>
+          </Link>
+        </SubCategory>
         {subCategories.map(subCategory => (
           <SubCategory>
             <Link href={{ pathname: '/cards', query: { category: subCategory } }}>
@@ -90,7 +72,7 @@ const Category = ({ name, subCategories }) => {
           </SubCategory>
         ))}
       </SubCategoryContainer>
-    </React.Fragment>
+    </MainCategoryContainer>
   );
 };
 
