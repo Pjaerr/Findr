@@ -13,7 +13,7 @@ const MainCategoryContainer = styled.div`
   width: 100%;
 
   h3 {
-    margin-bottom: -20px;
+    margin-bottom: -10px;
   }
 `;
 
@@ -31,18 +31,21 @@ const SubCategory = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 30px;
   list-style: none;
   padding-top: 20px;
   padding-bottom: 20px;
   margin: 5px;
 
-  background: ${GlobalStyles.secondaryBackgroundColour};
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  height: 40px;
+
+  background-image: linear-gradient(rgba(20, 20, 20, 0.6), rgba(20, 20, 20, 0.6)),
+    url(${props => props.image});
+  background-size: cover;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.3);
 
   a {
     text-decoration: none;
-    color: ${GlobalStyles.textColour};
+    color: ${GlobalStyles.secondaryBackgroundColour};
     padding: 20px;
   }
 
@@ -59,13 +62,13 @@ const Category = ({ name, subCategories }) => {
       <h3>{name}</h3>
 
       <SubCategoryContainer>
-        <SubCategory>
+        <SubCategory image="/static/category-images/all.jpg">
           <Link href={{ pathname: '/cards', query: { category: name } }}>
-            <a>All</a>
+            <a>Everything</a>
           </Link>
         </SubCategory>
         {subCategories.map(subCategory => (
-          <SubCategory>
+          <SubCategory image={`/static/category-images/${subCategory}.jpg`}>
             <Link href={{ pathname: '/cards', query: { category: subCategory } }}>
               <a>{subCategory}</a>
             </Link>
