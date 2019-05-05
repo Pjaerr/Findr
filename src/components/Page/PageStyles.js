@@ -7,8 +7,8 @@ export const GloballyInjectedStyles = createGlobalStyle`
     body {
         font-family: ${GlobalStyles.fontFamily};
         background-color: ${GlobalStyles.backgroundColour};
-
-        overflow: hidden;
+        overflow-y: ${props => (props.scrollEnabled ? 'auto' : 'hidden')};
+        overflow-x: hidden;
     }
 `;
 

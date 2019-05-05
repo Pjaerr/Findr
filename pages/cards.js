@@ -29,14 +29,14 @@ const cards = ({ router }) => {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(
         pos => {
-          getPlacesByMultiQuery(LONDON_LATLNG, 5, [category]).then(places => {
-            setPointsOfInterestData(places);
-          });
+          // getPlacesByMultiQuery(LONDON_LATLNG, 5, [category]).then(places => {
+          //   setPointsOfInterestData(places);
+          // });
 
           /** Call setPointsOfInterestData and pass in mock result that is resolved
            * on the getPlacesbyMultiQuery function.
            */
-          // setPointsOfInterestData(testData);
+          setPointsOfInterestData(testData);
         },
         error => {
           if (error.code === error.PERMISSION_DENIED) {
@@ -50,7 +50,7 @@ const cards = ({ router }) => {
   }, []);
 
   return (
-    <Page>
+    <Page scrollEnabled={false}>
       {browserSupportsGeolocation ? (
         <CardContainer data={pointsOfInterestData} />
       ) : (
