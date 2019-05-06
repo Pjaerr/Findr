@@ -14,7 +14,7 @@ const MainCategoryContainer = styled.div`
 
   h3 {
     margin-bottom: -10px;
-    border-bottom: 0.5px solid ${GlobalStyles.textColour};
+    border-bottom: 0.25px solid ${GlobalStyles.lightTextColour};
   }
 `;
 
@@ -36,16 +36,25 @@ const SubCategory = styled.li`
   padding-bottom: 20px;
   margin: 5px;
 
-  height: 40px;
+  height: 80px;
+  width: 200px;
+  min-width: 200px;
 
-  background-image: linear-gradient(rgba(20, 20, 20, 0.6), rgba(20, 20, 20, 0.6)),
-    url(${props => props.image});
+  ${({ image }) =>
+    image &&
+    `
+    background-image: linear-gradient(rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0.5)),
+    url(${image});
+  `}
+  
+  background-color: ${GlobalStyles.secondaryBackgroundColour};
+
   background-size: cover;
-  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
 
   a {
     text-decoration: none;
-    color: ${GlobalStyles.secondaryBackgroundColour};
+    color: ${props => (props.image ? GlobalStyles.backgroundColour : GlobalStyles.textColour)};
     padding: 20px;
   }
 
@@ -62,7 +71,7 @@ const Category = ({ name, subCategories }) => {
       <h3>{name}</h3>
 
       <SubCategoryContainer>
-        <SubCategory image="/static/category-images/all.jpg">
+        <SubCategory>
           <Link href={{ pathname: '/cards', query: { category: name } }}>
             <a>Everything</a>
           </Link>
