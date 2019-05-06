@@ -6,15 +6,26 @@ import CategorySelector from '../src/components/CategorySelector/CategorySelecto
 const categories = [
   {
     name: 'Attractions',
-    subCategories: ['Museums', 'Historic']
+    subCategories: [
+      { displayName: 'Museums', query: 'Museums' },
+      { displayName: 'Historic', query: 'Historic' }
+    ]
   },
   {
     name: 'Sights',
-    subCategories: ['Landmarks', 'Nature']
+    subCategories: [
+      { displayName: 'Landmarks', query: 'Landmarks' },
+      { displayName: 'Nature', query: 'Nature' }
+    ]
   },
   {
     name: 'Food',
-    subCategories: ['Chinese', 'American', 'German', 'Spanish']
+    subCategories: [
+      { displayName: 'Chinese', query: 'Chinese Food' },
+      { displayName: 'American', query: 'American Food' },
+      { displayName: 'German', query: 'German Food' },
+      { displayName: 'Spanish', query: 'Spanish Food' }
+    ]
   }
 ];
 

@@ -67,9 +67,9 @@ const Category = ({ name, subCategories }) => {
           </Link>
         </SubCategory>
         {subCategories.map(subCategory => (
-          <SubCategory image={`/static/category-images/${subCategory}.jpg`}>
-            <Link href={{ pathname: '/cards', query: { category: subCategory } }}>
-              <a>{subCategory}</a>
+          <SubCategory image={`/static/category-images/${subCategory.query.replace(' ', '_')}.jpg`}>
+            <Link href={{ pathname: '/cards', query: { category: subCategory.query } }}>
+              <a>{subCategory.displayName}</a>
             </Link>
           </SubCategory>
         ))}
