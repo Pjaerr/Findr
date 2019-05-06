@@ -11,6 +11,7 @@
 export default {
   backgroundColour: '#f5f5f5',
   textColour: '#333333',
+  lightTextColour: '#666666',
   secondaryBackgroundColour: '#ffffff',
   fontFamily: 'Montserrat, sans-serif',
 
