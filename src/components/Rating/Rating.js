@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import * as Styled from './RatingStyles';
 
@@ -31,6 +32,10 @@ const renderStars = number => {
 
 const Rating = ({ number }) => {
   return <Styled.RatingContainer>{renderStars(number)}</Styled.RatingContainer>;
+};
+
+Rating.propTypes = {
+  number: PropTypes.number.isRequired
 };
 
 export default Rating;

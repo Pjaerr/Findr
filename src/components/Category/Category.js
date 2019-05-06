@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import Link from 'next/link';
 
@@ -76,6 +77,16 @@ const Category = ({ name, subCategories }) => {
       </SubCategoryContainer>
     </MainCategoryContainer>
   );
+};
+
+Category.propTypes = {
+  name: PropTypes.string.isRequired,
+  subCategories: PropTypes.arrayOf(
+    PropTypes.shape({
+      displayName: PropTypes.string.isRequired,
+      query: PropTypes.string.isRequired
+    })
+  )
 };
 
 export default Category;

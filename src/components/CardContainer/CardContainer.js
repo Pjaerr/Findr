@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 import Swipeable from 'react-swipy';
 
@@ -70,6 +71,18 @@ const CardContainer = ({ data }) => {
   }
 
   return <Styled.LoadingMessage />;
+};
+
+CardContainer.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      distance: PropTypes.number.isRequired,
+      rating: PropTypes.number.isRequired,
+      image: PropTypes.string.isRequired,
+      externalLink: PropTypes.string.isRequired
+    })
+  )
 };
 
 export default CardContainer;
