@@ -9,11 +9,11 @@ const MainCategoryContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   width: 100%;
 
   h3 {
     margin-bottom: -10px;
+    border-bottom: 0.5px solid ${GlobalStyles.textColour};
   }
 `;
 
@@ -21,9 +21,8 @@ const SubCategoryContainer = styled.ul`
   overflow-x: auto;
   display: flex;
   padding: 20px;
-  width: 100%;
+  width: 90%;
   white-space: nowrap;
-  margin-left: 10px;
   margin-right: 10px;
 `;
 
@@ -41,7 +40,7 @@ const SubCategory = styled.li`
   background-image: linear-gradient(rgba(20, 20, 20, 0.6), rgba(20, 20, 20, 0.6)),
     url(${props => props.image});
   background-size: cover;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.3);
 
   a {
     text-decoration: none;
