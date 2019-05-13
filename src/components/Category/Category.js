@@ -6,6 +6,8 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import GlobalStyles from '../../../GlobalStyles';
 
+import SubCategory from '../SubCategory/SubCategory';
+
 const MainCategoryContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -27,63 +29,20 @@ const SubCategoryContainer = styled.ul`
   margin-right: 10px;
 `;
 
-const SubCategory = styled.li`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  list-style: none;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  margin: 5px;
-
-  font-weight: bold;
-
-  height: 60px;
-  width: 180px;
-  min-width: 180px;
-
-  ${({ image }) =>
-    image &&
-    `
-    background-image: linear-gradient(rgba(20, 20, 20, 0.7), rgba(20, 20, 20, 0.7)),
-    url(${image});
-  `}
-  
-  background-color: ${GlobalStyles.secondaryBackgroundColour};
-
-  background-size: cover;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-
-  a {
-    text-decoration: none;
-    color: ${props => (props.image ? GlobalStyles.backgroundColour : GlobalStyles.textColour)};
-    padding: 20px;
-  }
-
-  transition: transform 0.2s ease;
-
-  :hover {
-    transform: translateY(-5px);
-  }
-`;
-
 const Category = ({ name, subCategories }) => {
   return (
     <MainCategoryContainer>
       <h3>{name}</h3>
 
       <SubCategoryContainer>
-        <SubCategory>
-          <Link href={{ pathname: '/cards', query: { category: name } }}>
-            <a>Everything</a>
-          </Link>
-        </SubCategory>
+        <SubCategory showImage={false} displayName="Everything" query={name} />
+
         {subCategories.map(subCategory => (
-          <SubCategory image={`/static/category-images/${subCategory.query.replace(' ', '_')}.jpg`}>
-            <Link href={{ pathname: '/cards', query: { category: subCategory.query } }}>
-              <a>{subCategory.displayName}</a>
-            </Link>
-          </SubCategory>
+          <SubCategory
+            showImage={true}
+            displayName={subCategory.displayName}
+            query={subCategory.query}
+          />
         ))}
       </SubCategoryContainer>
     </MainCategoryContainer>
