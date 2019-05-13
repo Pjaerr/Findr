@@ -36,14 +36,16 @@ const SubCategory = styled.li`
   padding-bottom: 20px;
   margin: 5px;
 
-  height: 80px;
-  width: 200px;
-  min-width: 200px;
+  font-weight: bold;
+
+  height: 60px;
+  width: 180px;
+  min-width: 180px;
 
   ${({ image }) =>
     image &&
     `
-    background-image: linear-gradient(rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0.5)),
+    background-image: linear-gradient(rgba(20, 20, 20, 0.7), rgba(20, 20, 20, 0.7)),
     url(${image});
   `}
   
