@@ -10,7 +10,7 @@ import Page from '../src/components/Page/Page';
 import CardContainer from '../src/components/CardContainer/CardContainer';
 
 //Import Utils
-import getPlacesByMultiQuery from '../src/utils/getPlacesByMultiQuery';
+import getPlaces from '../src/utils/getPlaces';
 
 // ! Test latitude longitude for testing when not living in the middle of nowhere
 const NYC_LATLNG = { coords: { latitude: '40.6974034', longitude: '-74.1197633' } };
@@ -29,7 +29,7 @@ const cards = ({ router }) => {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(
         pos => {
-          getPlacesByMultiQuery(LONDON_LATLNG, 5, [category]).then(places => {
+          getPlaces(category, 5, NYC_LATLNG).then(places => {
             setPointsOfInterestData(places);
           });
 
@@ -50,7 +50,7 @@ const cards = ({ router }) => {
   }, []);
 
   return (
-    <Page>
+    <Page scrollEnabled={false}>
       {browserSupportsGeolocation ? (
         <CardContainer data={pointsOfInterestData} />
       ) : (
