@@ -1,7 +1,7 @@
 import getTransformedVenueData from './getTransformedVenueData';
 
 const getPlaces = async (query, limit, pos) => {
-  const latLng = `${pos.coords.latitude},${pos.coords.longitude}`;
+  const latLng = `${pos.latitude},${pos.longitude}`;
 
   const url = `/placedata/latLng=${latLng}&limit=${limit}&query=${query}`;
 
