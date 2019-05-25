@@ -29,14 +29,11 @@ const cards = ({ router }) => {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(
         pos => {
-          getPlaces(category, 5, NYC_LATLNG).then(places => {
-            setPointsOfInterestData(places);
-          });
+          // getPlaces(category, 5, NYC_LATLNG).then(places => {
+          //   setPointsOfInterestData(places);
+          // });
 
-          /** Call setPointsOfInterestData and pass in mock result that is resolved
-           * on the getPlacesbyMultiQuery function.
-           */
-          // setPointsOfInterestData(testData);
+          setPointsOfInterestData(testData);
         },
         error => {
           if (error.code === error.PERMISSION_DENIED) {
@@ -50,7 +47,7 @@ const cards = ({ router }) => {
   }, []);
 
   return (
-    <Page scrollEnabled={false}>
+    <Page scrollEnabled={false} isLoading={pointsOfInterestData <= 0}>
       {browserSupportsGeolocation ? (
         <CardContainer data={pointsOfInterestData} />
       ) : (
