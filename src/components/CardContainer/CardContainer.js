@@ -70,7 +70,7 @@ const CardContainer = ({ data }) => {
     );
   }
 
-  return <Styled.LoadingMessage />;
+  return null;
 };
 
 CardContainer.propTypes = {
