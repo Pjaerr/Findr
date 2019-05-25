@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 import * as Styled from './PageStyles';
 
-const Page = ({ children, scrollEnabled }) => (
+const Page = ({ children, scrollEnabled, isLoading }) => (
   <Styled.Page>
     <Styled.GloballyInjectedStyles scrollEnabled={scrollEnabled} />
     <Link href="/">
@@ -13,16 +13,18 @@ const Page = ({ children, scrollEnabled }) => (
         <h2>Findr</h2>
       </a>
     </Link>
-    {children}
+    {isLoading ? <Styled.LoadingAnimation /> : children}
   </Styled.Page>
 );
 
 Page.defaultProps = {
-  scrollEnabled: true
+  scrollEnabled: true,
+  isLoading: false
 };
 
 Page.propTypes = {
-  scrollEnabled: PropTypes.bool
+  scrollEnabled: PropTypes.bool,
+  isLoading: PropTypes.bool
 };
 
 export default Page;
