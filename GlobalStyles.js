@@ -13,6 +13,7 @@ export default {
   textColour: '#333333',
   lightTextColour: '#666666',
   secondaryBackgroundColour: '#ffffff',
+  linkColour: '#4834d4',
   fontFamily: 'Montserrat, sans-serif',
 
   breakpoints: {
