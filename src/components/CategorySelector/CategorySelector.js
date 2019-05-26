@@ -9,7 +9,7 @@ const CategorySelector = ({ categories }) => {
   return (
     <Styled.CategoriesContainer>
       {categories.map(category => (
-        <Category name={category.name} subCategories={category.subCategories} />
+        <Category key={category.name} name={category.name} subCategories={category.subCategories} />
       ))}
     </Styled.CategoriesContainer>
   );

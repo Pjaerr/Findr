@@ -15,6 +15,7 @@ const Category = ({ name, subCategories }) => {
 
         {subCategories.map(subCategory => (
           <SubCategory
+            key={subCategory.query}
             showImage={true}
             displayName={subCategory.displayName}
             query={subCategory.query}
