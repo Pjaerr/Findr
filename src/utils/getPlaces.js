@@ -1,3 +1,4 @@
+//Utils
 import getTransformedVenueData from './getTransformedVenueData';
 
 const getPlaces = async (query, limit, pos) => {
@@ -13,7 +14,6 @@ const getPlaces = async (query, limit, pos) => {
     const placeData = await response.json();
 
     try {
-      //TODO: Add checks in here for if no locations are found so can return an empty array instead of Foursquare array.
       const venues = await getTransformedVenueData(placeData.response.groups[0].items);
       return venues;
     } catch (err) {
