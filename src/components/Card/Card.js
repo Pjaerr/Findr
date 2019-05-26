@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 //Components
 import Rating from '../Rating/Rating';
 
+//Styles
 import * as Styled from './CardStyles';
 
 const Card = props => {
