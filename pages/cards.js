@@ -3,20 +3,19 @@ import React, { useState, useEffect } from 'react';
 //Lets us grab URL parameters ie. ?category=attractions
 import { withRouter } from 'next/router';
 
-//Import Global Page Container
+//Global Page Container
 import Page from '../src/components/Page/Page';
 
-//Import Components
+//Components
 import CardContainer from '../src/components/CardContainer/CardContainer';
 import NotFoundError from '../src/components/NotFoundError/NotFoundError';
 
-//Import Utils
+//Utils
 import getPlaces from '../src/utils/getPlaces';
 
 // ! Test latitude longitude for testing when not living in the middle of nowhere
 const NYC_LATLNG = { latitude: '40.6974034', longitude: '-74.1197633' };
 const LONDON_LATLNG = { latitude: '51.528308', longitude: '-0.3817765' };
-
 const NOWHERE_LATLNG = { latitude: '68.578928', longitude: '111.915428' };
 
 import testData from '../test-data';
