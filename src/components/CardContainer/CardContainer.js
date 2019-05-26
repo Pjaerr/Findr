@@ -72,21 +72,19 @@ const CardContainer = ({ data }) => {
         ) : null}
       </Styled.CardContainerWrapper>
     );
-  } else {
-    return (
-      <Styled.BackToCategorySelectionContainer>
-        <h3>No More Cards</h3>
-        <span role="img" aria-label="hand pointing left">
-          👈
-        </span>
-        <Link href="/">
-          <a>Click here to choose another category</a>
-        </Link>
-      </Styled.BackToCategorySelectionContainer>
-    );
   }
 
-  return null;
+  return (
+    <Styled.BackToCategorySelectionContainer>
+      <h3>No More Cards</h3>
+      <span role="img" aria-label="hand pointing left">
+        👈
+      </span>
+      <Link href="/">
+        <a>Click here to choose another category</a>
+      </Link>
+    </Styled.BackToCategorySelectionContainer>
+  );
 };
 
 CardContainer.propTypes = {
