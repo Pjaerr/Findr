@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+//Components
 import Link from 'next/link';
 
+//Styles
 import * as Styled from './SubCategoryStyles';
 
 const SubCategory = ({ showImage, displayName, query }) => {

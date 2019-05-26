@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+//Components
 import Category from '../Category/Category';
 
+//Styles
 import * as Styled from './CategorySelectorStyles';
 
 const CategorySelector = ({ categories }) => {
