@@ -5,6 +5,8 @@ import Swipeable from 'react-swipy';
 
 import Card from '../Card/Card';
 
+import Link from 'next/link';
+
 import * as Styled from './CardContainerStyles';
 
 const CardContainer = ({ data }) => {
@@ -33,6 +35,8 @@ const CardContainer = ({ data }) => {
   const dislikeCard = () => {
     if (currentCard < cards.length - 1) {
       setCurrentCard(currentCard + 1);
+    } else {
+      setCards([]);
     }
   };
 
@@ -67,6 +71,18 @@ const CardContainer = ({ data }) => {
           <Styled.HiddenCard>{cards[currentCard + 1]}</Styled.HiddenCard>
         ) : null}
       </Styled.CardContainerWrapper>
+    );
+  } else {
+    return (
+      <Styled.BackToCategorySelectionContainer>
+        <h3>No More Cards</h3>
+        <span role="img" aria-label="hand pointing left">
+          👈
+        </span>
+        <Link href="/">
+          <a>Click here to choose another category</a>
+        </Link>
+      </Styled.BackToCategorySelectionContainer>
     );
   }
 

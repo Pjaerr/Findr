@@ -21,9 +21,14 @@ export const CardContainerButtons = styled.div`
     -webkit-user-select: none; /* for button */
     -moz-user-select: none;
     -ms-user-select: none;
+    outline: none;
 
     display: flex;
     justify-content: center;
+
+    :active {
+      box-shadow: none;
+    }
   }
 `;
 
@@ -43,4 +48,23 @@ export const HiddenCard = styled.div`
   position: absolute;
   z-index: -1;
   top: 77px;
+`;
+
+export const BackToCategorySelectionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h3 {
+    color: ${GlobalStyles.textColour};
+  }
+
+  span {
+    margin-bottom: 10px;
+  }
+
+  a {
+    color: ${GlobalStyles.linkColour};
+  }
 `;
