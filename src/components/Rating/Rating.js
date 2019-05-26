@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+//Styles
 import * as Styled from './RatingStyles';
 
 const renderStars = number => {

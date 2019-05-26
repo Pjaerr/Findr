@@ -1,28 +1,19 @@
 import React from 'react';
 
+//Global Page Container
 import Page from '../Page/Page';
 
-import styled from 'styled-components';
-
-const ShrugIcon = styled.span`
-  font-size: 24px;
-  margin-bottom: 20px;
-  text-align: center;
-`;
-
-const Message = styled.b`
-  text-align: center;
-  max-width: 90%;
-`;
+//Styles
+import * as Styled from './NotFoundErrorStyles';
 
 const NotFoundError = ({ message }) => {
   return (
     <Page>
-      <ShrugIcon role="img" aria-label="Emoji of a woman shrugging">
+      <Styled.ShrugIcon role="img" aria-label="Emoji of a woman shrugging">
         🤷
-      </ShrugIcon>
+      </Styled.ShrugIcon>
 
-      <Message>{message}</Message>
+      <Styled.Message>{message}</Styled.Message>
     </Page>
   );
 };
