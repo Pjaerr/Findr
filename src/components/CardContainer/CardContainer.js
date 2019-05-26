@@ -1,27 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
+//Components
 import Swipeable from 'react-swipy';
-
+import Link from 'next/link';
 import Card from '../Card/Card';
 
-import Link from 'next/link';
-
+//Styles
 import * as Styled from './CardContainerStyles';
 
 const CardContainer = ({ data }) => {
   const [currentCard, setCurrentCard] = useState(0);
   const [cards, setCards] = useState([]);
 
-  /*
-        Using the useEffect hook to recreate the functionality of the
-        componentDidMount lifecycle method. The setCards function call will only
-        happen if the data prop has changed.
-    */
   useEffect(() => {
     setCards(data.map(set => <Card data={set} />));
   }, [data]);
 
+  //This is updated in the onSwipe function of Swipeable to indicate direction
   let direction = '';
 
   const onAfterSwipe = () => {

@@ -15,10 +15,11 @@ export const CardContainerButtons = styled.div`
 
     background: ${GlobalStyles.secondaryBackgroundColour};
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-    border: none;
 
-    -webkit-appearance: button; /* for input */
-    -webkit-user-select: none; /* for button */
+    /*Clear default button styles*/
+    border: none;
+    -webkit-appearance: button;
+    -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     outline: none;
