@@ -1,6 +1,9 @@
 import React from 'react';
 
+//Global Page Container
 import Page from '../src/components/Page/Page';
+
+//Components
 import CategorySelector from '../src/components/CategorySelector/CategorySelector';
 
 const categories = [
