@@ -4,7 +4,8 @@
   "description": "Findr is a web app made with **React** and the **Foursquare API** that gathers nearby places matching a specific category within a specific search radius. The results are grabbed in real-time and are presented in a card with an image, title, distance in miles and star rating, all taken from google maps. There exists two buttons, dismiss and like that sit below the card, the dismiss button loads the next 'card' which is a new location grabbed from google maps, and the like button takes you to the google maps page for the location on the card.",
   "main": "index.js",
   "scripts": {
-    "dev": "node ./backend/ssr-server.js",
+    "backend": "node ./backend/index.js",
+    "frontend": "next",
     "build": "next build",
     "start": "next start"
   },
