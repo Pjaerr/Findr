@@ -13,7 +13,7 @@ const transformVenueData = async venue => {
   resolved that will give the resolver the entire transformed venue object */
 
   try {
-    const response = await fetch(`/placedata/photos/id=${venue.id}`);
+    const response = await fetch(`https://localhost:3001/placedata/photos/id=${venue.id}`);
 
     if (!response.ok) throw new Error('HTTP Response not OK');
 

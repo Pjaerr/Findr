@@ -19,6 +19,7 @@ const getPlaceData = async (limit, latLng, query) => {
     throw new Error('Invalid Status Code, expected 200\n' + body);
   }
 
+  //TODO: Transform the data using utils here and then return the result of those utils
   if (body) return body;
 };
 
