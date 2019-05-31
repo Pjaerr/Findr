@@ -13,13 +13,10 @@ const getPlaceData = async (limit, latLng, query) => {
     FoursquareApiData.venueBaseUrl +
     `?${apiClientID}&${apiClientSecret}&${apiVersion}&${apiLimit}&${apiLatLng}&${apiQuery}`;
 
-  const { statusCode, body } = await getAsync(apiRequestUrl).catch(err =>
-    console.error('Error fetching API data in getPlaceData service ' + err)
-  );
+  const { statusCode, body } = await getAsync(apiRequestUrl);
 
   if (statusCode !== 200) {
-    console.error('Error fetching API data in getPlaceData service, statusCode: ' + statusCode);
-    return null;
+    throw new Error('Invalid Status Code, expected 200\n' + body);
   }
 
   if (body) return body;
