@@ -2,14 +2,18 @@ const FoursquareApiData = require('../data/FoursquareApiData.js');
 const getAsync = require('util').promisify(require('request').get);
 
 const getPlaceData = async (limit, latLng, query) => {
-  //TODO: Clean this up so it is more readable
-  const apiQuery = `${FoursquareApiData.venueBaseUrl}?client_id=${
-    FoursquareApiData.clientID
-  }&client_secret=${FoursquareApiData.clientSecret}&v=${
-    FoursquareApiData.version
-  }&limit=${limit}&ll=${latLng}&query=${query}`;
+  const apiClientID = `client_id=${FoursquareApiData.clientID}`;
+  const apiClientSecret = `client_secret=${FoursquareApiData.clientSecret}`;
+  const apiVersion = `v=${FoursquareApiData.version}`;
+  const apiLimit = `limit=${limit}`;
+  const apiLatLng = `ll=${latLng}`;
+  const apiQuery = `query=${query}`;
 
-  const { statusCode, body } = await getAsync(apiQuery).catch(err =>
+  const apiRequestUrl =
+    FoursquareApiData.venueBaseUrl +
+    `?${apiClientID}&${apiClientSecret}&${apiVersion}&${apiLimit}&${apiLatLng}&${apiQuery}`;
+
+  const { statusCode, body } = await getAsync(apiRequestUrl).catch(err =>
     console.error('Error fetching API data in getPlaceData service ' + err)
   );
 
