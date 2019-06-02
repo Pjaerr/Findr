@@ -4,10 +4,7 @@
 
 I am currently rebuilding this web app using the new knowledge I have gained. Looking back, this project was really useful as it got me interested in react, but I did almost everything the _wrong_ way. Hopefully in the rebuild I can use my experience to atleast do some of those things correctly.
 
-Progress can be followed on the `rebuild/development` branch where features/bugs/fixes etc are listed as `rebuild/NAME-OF-FEATURE` and then merged into the development branch.
-
-I am happy for contributions where possible but I understand I haven't spent the time to make it easy to contribute. I will be adding issues once I have a solid base and I am confident the code is readable, maintainable and can be contributed to.
-
+The rebuild is now within the master branch and this is the old master branch before rebuilding.
 
 ## Old Readme:
 ### A tinder-like web app that helps you find things to do nearby. [Finished] 
