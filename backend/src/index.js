@@ -9,7 +9,7 @@ const cors = require("cors");
 const app = express();
 const port = 3001;
 
-const allowedOrigins = ["http://localhost:3000", "https://pjaerr.github.io"];
+const allowedOrigins = process.env.ALLOWED_ORIGINS.split(",");
 
 app.use(
   cors({
