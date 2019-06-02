@@ -3,12 +3,12 @@ require("dotenv").config();
 //Controllers
 const placeDataController = require("./controllers/placeDataController.js");
 
+//Express Server
 const express = require("express");
 const cors = require("cors");
 const app = express();
 const port = 3001;
 
-/*Restrict access to the follow origins*/
 const allowedOrigins = ["http://localhost:3000", "https://pjaerr.github.io"];
 
 app.use(

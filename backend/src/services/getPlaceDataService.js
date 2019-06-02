@@ -6,6 +6,13 @@ const requestUrlParameters = require("../utils/requestUrlParameters.js");
 const getTransformedVenueData = require("../utils/getTransformedVenueData.js");
 const getAsync = require("util").promisify(require("request").get);
 
+/**
+ * Makes a call to the foursquare API and transforms the response into usable data
+ * @param limit The number of venues to get from the foursquare api
+ * @param latLng The location to search within
+ * @param query The search query to use
+ * @returns An array of transformed venues
+ */
 const getPlaceDataService = async (limit, latLng, query) => {
   const apiRequestUrl =
     FoursquareApiData.venueBaseUrl +

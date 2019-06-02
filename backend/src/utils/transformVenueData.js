@@ -5,6 +5,11 @@ const FoursquareApiData = require("../data/FoursquareApiData.js");
 const requestUrlParameters = require("./requestUrlParameters.js");
 const getAsync = require("util").promisify(require("request").get);
 
+/**
+ * Takes a foursquare venue object and transforms it match the expected format.
+ * @param venue A venue object from the foursquare API
+ * @returns A transformed venue object
+ */
 const transformVenueData = async venue => {
   let transformedData = {
     name: venue.name,
