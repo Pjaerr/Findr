@@ -32,15 +32,19 @@ const cards = ({ router }) => {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(
         pos => {
-          // getPlaces(category, 15, pos.coords).then(places => {
-          //   if (places.length <= 0) {
-          //     setNoPlacesNearby(true);
-          //   } else {
-          //     setPointsOfInterestData(places);
-          //   }
-          // });
+          getPlaces(category, 15, LONDON_LATLNG)
+            .then(places => {
+              if (places.length <= 0) {
+                setNoPlacesNearby(true);
+              } else {
+                setPointsOfInterestData(places);
+              }
+            })
+            .catch(err => {
+              console.error(err);
+            });
 
-          setPointsOfInterestData(testData);
+          // setPointsOfInterestData(testData);
         },
         error => {
           if (error.code === error.PERMISSION_DENIED) {
