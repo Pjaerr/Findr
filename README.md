@@ -2,6 +2,10 @@
 
 ### A tinder-like web app that helps you find things to do nearby
 
+A live running version can be found at https://findr-rebuild.netlify.com/
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/bac28875-2a3f-4767-ba8c-1b0fc9395376/deploy-status)](https://app.netlify.com/sites/findr-rebuild/deploys)
+
 ![Findr Gif](https://media.giphy.com/media/dB02uIJ5SPSUqJRQfw/giphy.gif)
 \*Sorry for the dodgy gif :(
 
