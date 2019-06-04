@@ -13,13 +13,6 @@ import NotFoundError from '../src/components/NotFoundError/NotFoundError';
 //Utils
 import getPlaces from '../src/utils/getPlaces';
 
-// ! Test latitude longitude for testing when not living in the middle of nowhere
-const NYC_LATLNG = { latitude: '40.6974034', longitude: '-74.1197633' };
-const LONDON_LATLNG = { latitude: '51.528308', longitude: '-0.3817765' };
-const NOWHERE_LATLNG = { latitude: '68.578928', longitude: '111.915428' };
-
-import testData from '../test-data';
-
 const cards = ({ router }) => {
   const [pointsOfInterestData, setPointsOfInterestData] = useState([]);
   const [noPlacesNearby, setNoPlacesNearby] = useState(false);
@@ -32,7 +25,7 @@ const cards = ({ router }) => {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(
         pos => {
-          getPlaces(category, 15, LONDON_LATLNG)
+          getPlaces(category, 15, pos.coords)
             .then(places => {
               if (places.length <= 0) {
                 setNoPlacesNearby(true);
@@ -43,8 +36,6 @@ const cards = ({ router }) => {
             .catch(err => {
               console.error(err);
             });
-
-          // setPointsOfInterestData(testData);
         },
         error => {
           if (error.code === error.PERMISSION_DENIED) {
