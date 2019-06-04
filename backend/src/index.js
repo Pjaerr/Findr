@@ -7,7 +7,7 @@ const placeDataController = require("./controllers/placeDataController.js");
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const port = 3001;
+const port = process.env.PORT;
 
 const allowedOrigins = process.env.ALLOWED_ORIGINS.split(",");
 
