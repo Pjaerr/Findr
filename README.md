@@ -3,7 +3,7 @@
 ### A tinder-like web app that helps you find things to do nearby
 
 ![Findr Gif](https://media.giphy.com/media/dB02uIJ5SPSUqJRQfw/giphy.gif)
-*Sorry for the dodgy gif :(
+\*Sorry for the dodgy gif :(
 
 #### Frontend
 
@@ -29,7 +29,8 @@ This web app was originally made using my very basic react knowledge and the goo
 5. In the same file, ensure your list of allowed origins includes 'http://localhost:3000' (this is your frontend)
 6. Rename your `example.env` to just `.env`
 7. Inside of the /backend folder Run `npm start` to start the backend. You can see if this is working by visiting `http://localhost:3001`
-8. Inside of the /frontend folder, run `npm run dev` to start the frontend. You can also run `npm run build` followed by `npm start` to run the production build.
+8. Inside of the /frontend/src/utils folder, modify the `getPlaces` function so that the url points to your locally running backend (`http://localhost:3001`)
+9. Inside of the /frontend folder, run `npm run dev` to start the frontend. You can also run `npm run build` followed by `npm start` to run the production build.
 
 #### Contributing
 
