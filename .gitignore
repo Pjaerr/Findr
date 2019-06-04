@@ -5,6 +5,7 @@
 /backend/node_modules
 
 /frontend/.next
+/frontend/out
 
 /backend/.env
 
