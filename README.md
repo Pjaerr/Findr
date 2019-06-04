@@ -2,7 +2,8 @@
 
 ### A tinder-like web app that helps you find things to do nearby
 
-![](https://media.giphy.com/media/KyH7s1LQHM68l7pQMH/giphy.gif)
+![Findr Gif](https://media.giphy.com/media/dB02uIJ5SPSUqJRQfw/giphy.gif)
+*Sorry for the dodgy gif :(
 
 #### Frontend
 
