@@ -26,3 +26,5 @@
 /backend/yarn-debug.log*
 /backend/yarn-error.log*
 .vscode/launch.json
+
+.vscode
