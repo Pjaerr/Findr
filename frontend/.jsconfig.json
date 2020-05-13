@@ -1,8 +1,0 @@
-{
-  "compilerOptions": {
-    "baseUrl": "src/",
-    "target": "esnext",
-    "module": "commonjs"
-  },
-  "exclude": ["node_modules"]
-}
