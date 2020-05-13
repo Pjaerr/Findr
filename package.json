@@ -1,0 +1,27 @@
+{
+    "name": "findr-backend",
+    "version": "1.0.0",
+    "description": "Findr is a web app made with **React** and the **Foursquare API** that gathers nearby places matching a specific category within a specific search radius. The results are grabbed in real-time and are presented in a card with an image, title, distance in miles and star rating, all taken from google maps. There exists two buttons, dismiss and like that sit below the card, the dismiss button loads the next 'card' which is a new location grabbed from google maps, and the like button takes you to the google maps page for the location on the card.",
+    "main": "index.js",
+    "scripts": {
+        "start": "node ./backend/src/index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Pjaerr/Findr.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Pjaerr/Findr/issues"
+    },
+    "homepage": "https://github.com/Pjaerr/Findr#readme",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^6.2.0",
+        "express": "^4.16.4",
+        "request": "^2.88.0"
+    },
+    "devDependencies": {}
+}
