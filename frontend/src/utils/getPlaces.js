@@ -1,7 +1,7 @@
 const getPlaces = async (query, limit, pos) => {
   const latLng = `${pos.latitude},${pos.longitude}`;
 
-  const url = `https://findr.onrender.com/placedata/latLng=${latLng}&limit=${limit}&query=${query}`;
+  const url = `https://findr-k6t0.onrender.com/placedata/latLng=${latLng}&limit=${limit}&query=${query}`;
   try {
     const response = await fetch(url);
 
